@@ -54,7 +54,8 @@ class Partida(models.Model):
     codigo = models.AutoField(primary_key=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     arbitro = models.ForeignKey(Arbitro, on_delete=models.CASCADE)
-    visitante = models.ForeignKey(Time, on_delete=models.CASCADE)
+    visitante  = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='visitante')
+    local  = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='local')
     data = models.DateField()
 
 class Conflito(models.Model):
