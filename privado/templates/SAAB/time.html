@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Times</title>
+    </head>
+    <body>
+        <h1> Times: </h1>
+        <table border="2">
+            {% for i in times %}
+            <tr>
+                <td> {{ i.codigo }}</td>
+                <td> {{ i.nome }}</td>
+                <td> {{ i.cidade }}</td>
+                <td> 
+                    <a href="{%url 'url_updateTime' i.id %}"> ATUALIZAR </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

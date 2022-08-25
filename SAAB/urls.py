@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from privado.views import time, createTime, updateTime, deleteTime
 
 urlpatterns = [
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('times/', time),
+    path('adicionarTime/', createTime),
+    path('updateTime/<int:id>', updateTime, name="url_updateTime"),
+    path('deleteTime/<int:id>', deleteTime, name="url_deleteTime"),
 ]
