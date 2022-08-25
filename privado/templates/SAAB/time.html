@@ -9,13 +9,16 @@
     <body>
         <h1> Times: </h1>
         <table border="2">
-            {% for i in times %}
+            {% for i in time %}
             <tr>
                 <td> {{ i.codigo }}</td>
                 <td> {{ i.nome }}</td>
                 <td> {{ i.cidade }}</td>
                 <td> 
-                    <a href="{%url 'url_updateTime' i.id %}"> ATUALIZAR </a>
+                    <a href="{% url 'url_updateTime' i.codigo %}"> ATUALIZAR </a>
+                </td>
+                <td> 
+                    <a href="{%url 'url_deleteTime' i.codigo %}"> DELETAR  </a>
                 </td>
             </tr>
             {% endfor %}

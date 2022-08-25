@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('times/', time),
     path('adicionarTime/', createTime),
-    path('updateTime/<int:id>', updateTime, name="url_updateTime"),
-    path('deleteTime/<int:id>', deleteTime, name="url_deleteTime"),
+    path('updateTime/<int:id>/', updateTime, name="url_updateTime"),
+    path('deleteTime/<int:id>/', deleteTime, name="url_deleteTime"),
 ]
