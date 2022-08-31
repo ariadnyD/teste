@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from privado.views import time, createTime, updateTime, deleteTime
+from privado.views import  time, createTime, updateTime, deleteTime, conflito, createConflito, updateConflito, deleteConflito
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,8 @@ urlpatterns = [
     path('adicionarTime/', createTime),
     path('updateTime/<int:id>/', updateTime, name="url_updateTime"),
     path('deleteTime/<int:id>/', deleteTime, name="url_deleteTime"),
+    path('conflitos/', conflito),
+    path('adicionarConflito/', createConflito),
+    path('updateConflito/<int:id>/', updateConflito, name="url_updateTime"),
+    path('deleteConflito/<int:id>/', deleteConflito, name="url_deleteTime"),
 ]
