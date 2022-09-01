@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,10 +10,9 @@
   <body>
     <h1>Conflitos:</h1>
     <table border="2">
-      {% for i in time %}
+      {% for i in conflito %}
       <tr>
         <td>{{ i.codigo }}</td>
-        aaa
         <td>{{ i.partida }}</td>
         <td>{{ i.time }}</td>
         <td>{{ i.descricao }}</td>

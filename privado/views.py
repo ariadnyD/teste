@@ -28,7 +28,7 @@ def deleteTime(request, id):
     aval = Time.objects.get(pk=id)
     aval.delete()
     return redirect("/times")
-
+ 
     
 def conflito(request):
     conflito = Conflito.objects.all()
