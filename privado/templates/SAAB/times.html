@@ -1,0 +1,38 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Times</title>
+    </head>
+    <body>
+        <h1 class="mt-4">Times Cadastrados</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">Times</li>
+            <li class="breadcrumb-item active">Times Cadastrados</li>
+        </ol>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cidade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for i in time %}
+                <tr>
+                    <td> {{ i.nome }}</td>
+                    <td> {{ i.cidade }}</td>
+                    <td>
+                        <a href="{% url 'url_updateTime' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                        <a href="{% url 'url_deleteTime' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'url_formTime' %}"><button  class="btn btn-primary">Novo Time</button></a>
+    </body>
+</html>
+{% endblock %}

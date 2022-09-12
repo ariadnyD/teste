@@ -7,20 +7,32 @@ class Usuario(models.Model):
     email = models.CharField(max_length=100)
     senha = models.CharField(max_length=16)
 
+    def __str__(self):
+        return (self.username)
+
 class Cidade(models.Model):
     codigo = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return (self.nome)
 
 class Time(models.Model):
     codigo = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return (self.nome)
+
 class Arbitro(models.Model):
     codigo = models.AutoField(primary_key=True)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     formafisica = models.BooleanField()
+
+    def __str__(self):
+        return (self.nome)
 
 class VidapubliArbitro(models.Model):
     codigo = models.AutoField(primary_key=True) 
@@ -58,11 +70,12 @@ class Partida(models.Model):
     local  = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='local')
     data = models.DateField()
 
+    def __str__(self):
+        return str(self.codigo)
+
 class Conflito(models.Model):
     codigo = models.AutoField(primary_key=True)
     partida = models.ForeignKey(Partida, on_delete=models.CASCADE)
     time = models.ForeignKey(Time, on_delete=models.CASCADE)
     descricao = models.TextField(max_length=260)
     errotecnico = models.BooleanField()
-
-

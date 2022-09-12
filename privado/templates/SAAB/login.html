@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="login-style.css">
-  <link rel="shortcut icon" href="img/SAAB-logo2.0.png" type="image/x-icon">
+  <link href="{% static '/css/login-style.css' %}" rel="stylesheet" />
+  <link rel="shortcut icon" href="{% static '/img/SAAB-logo2.0.png' %}" type="image/x-icon">
   <title>Login - SAAB</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
       <div id="side-side">
 
       <div class="logo-side">
-        <img src="img/SAAB-logo2.0.png" alt="Logo do saab. Uma bola com um apito na parte de dentro e circulada por uma seta" id="logo">
+        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="Logo do saab. Uma bola com um apito na parte de dentro e circulada por uma seta" id="logo">
         <h1>SAAB</h1>
       </div>
 
@@ -48,5 +49,5 @@
     </div>
   </main>
 </body>
-<script src="js/script.js"></script>
+<script src="{% static '/js/script.js' %}"></script>
 </html>
