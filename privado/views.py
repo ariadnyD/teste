@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from privado.models import Time, Conflito, Arbitro, Cidade
-from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm
+from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro
+from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm, PolemicaVPForm, PolemicaForm 
 
 # essa função é só por enquanto
 def index(request):
@@ -120,3 +120,51 @@ def deleteCidade(request, id):
     cida = Cidade.objects.get(pk=id)
     cida.delete()
     return redirect("/cidades")
+
+def formPolemica(request, id):
+    formPolemica = PolemicaForm(request.POST or None)
+    if formPolemica.is_valid() :
+        formPolemica.save()
+        return redirect("/polemicas")
+
+    pacote = {"formPolemica": formPolemica}
+    return render(request, "SAAB/formPolemica.html", pacote)
+
+def updatePolemica(request, id):
+    pole = DeclaracaoArbitro.objects.get(pk=id)
+    formPolemica = PolemicaForm(request.POST or None, instance=pole)
+    if formPolemica.is_valid() :
+        formPolemica.save()
+        return redirect("/polemicas")
+
+    pacote = {"formPolemica": formPolemica}
+    return render(request, "SAAB/formPolemica.html", pacote)
+
+def deletePolemica(request, id):
+    pole = DeclaracaoArbitro.objects.get(pk=id)
+    pole.delete()
+    return redirect("/polemicas")
+
+def formPolemicaVP(request, id):
+    formPolemicaVP = PolemicaVPForm(request.POST or None)
+    if formPolemicaVP.is_valid() :
+        formPolemicaVP.save()
+        return redirect("/polemicasvp")
+
+    pacote = {"formPolemicaVP": formPolemicaVP}
+    return render(request, "SAAB/formPolemicaVP.html", pacote)
+
+def updatePolemicaVP(request, id):
+    polevp = VidapubliArbitro.objects.get(pk=id)
+    formPolemicaVP = PolemicaVPForm(request.POST or None, instance=polevp)
+    if formPolemicaVP.is_valid() :
+        formPolemicaVP.save()
+        return redirect("/polemicasvp")
+
+    pacote = {"formPolemica": formPolemicaVP}
+    return render(request, "SAAB/formPolemicaVP.html", pacote)
+
+def deletePolemicaVP(request, id):
+    polevp = VidapubliArbitro.objects.get(pk=id)
+    polevp.delete()
+    return redirect("/polemicasvp")

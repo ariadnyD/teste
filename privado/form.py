@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from privado.models import Time, Conflito, Arbitro, Cidade
+from privado.models import Time, Conflito, Arbitro, Cidade, DeclaracaoArbitro, VidapubliArbitro
 
 class TimeForm(ModelForm):
     class Meta:
@@ -20,3 +20,13 @@ class CidadeForm(ModelForm):
     class Meta:
         model = Cidade
         fields = ["nome"]
+
+class PolemicaForm(ModelForm):
+    class Meta:
+        model = DeclaracaoArbitro
+        fields = ["codigo" , "arbitro","descricao","data","peso" ]
+
+class PolemicaVPForm(ModelForm):
+    class Meta:
+        model = VidapubliArbitro
+        fields = ["codigo" , "arbitro","descricao","data","peso" ]

@@ -38,4 +38,10 @@ urlpatterns = [
     path('cidades/', cidades, name="url_cidades"),
     path('updateCidade/<int:id>', updateCidade, name="url_updateCidade"),
     path('deleteCidade/<int:id>', deleteCidade, name="url_deleteCidade"),
+    path('polemicas/', formPolemica, name="url_polemicas"),
+    path('updatePolemica/<int:id>', updatePolemica, name="url_updatePolemica"),
+    path('deletePolemica/<int:id>', deletePolemica, name="url_deletePolemica"),
+    path('polemicasvp/', formPolemicaVP, name="url_polemicasvp"),
+    path('updatePolemicaVP/<int:id>', updatePolemicaVP, name="url_updatePolemicaVP"),
+    path('deletePolemicaVP/<int:id>', deletePolemicaVP, name="url_deletePolemicaVP"),
 ]
