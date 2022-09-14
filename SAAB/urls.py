@@ -44,4 +44,11 @@ urlpatterns = [
     path('polemicasvp/', formPolemicaVP, name="url_polemicasvp"),
     path('updatePolemicaVP/<int:id>', updatePolemicaVP, name="url_updatePolemicaVP"),
     path('deletePolemicaVP/<int:id>', deletePolemicaVP, name="url_deletePolemicaVP"),
+    path('Denuncias/', formDenuncias, name="url_denuncias"),
+    path('updateDenuncias/<int:id>', updateDenuncias, name="url_updateDenuncias"),
+    path('deleteDenuncias/<int:id>', deleteDenuncias, name="url_deleteDenuncias"),
+    path('Papelada/', formPapelada, name="url_papelada"),
+    path('updatePapelada/<int:id>', updatePapelada, name="url_updatePapelada"),
+    path('deletePapelada/<int:id>', deletePapelada, name="url_deletePapelada"),
+
 ]

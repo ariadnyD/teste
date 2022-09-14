@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro
-from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm, PolemicaVPForm, PolemicaForm 
+from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro
+from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm, PolemicaVPForm, PolemicaForm, DenunciasForm, PapeladaForm
 
 # essa função é só por enquanto
 def index(request):
@@ -168,3 +168,52 @@ def deletePolemicaVP(request, id):
     polevp = VidapubliArbitro.objects.get(pk=id)
     polevp.delete()
     return redirect("/polemicasvp")
+    
+def formDenuncias(request, id):
+    formDenuncias = DenunciasForm(request.POST or None)
+    if formDenuncias.is_valid() :
+        formDenuncias.save()
+        return redirect("/Denuncias")
+
+    pacote = {"formDenuncias": formDenuncias}
+    return render(request, "SAAB/formDenuncias.html", pacote)
+
+def updateDenuncias(request, id):
+    denuncia = DenunciaArbitro.objects.get(pk=id)
+    formDenuncias = DenunciasForm(request.POST or None, instance=denuncia)
+    if formDenuncias.is_valid() :
+        formDenuncias.save()
+        return redirect("/Denuncias")
+
+    pacote = {"formDenuncias": formDenuncias}
+    return render(request, "SAAB/formDenuncias.html", pacote)
+
+def deleteDenuncias(request, id):
+    denuncia = DenunciaArbitro.objects.get(pk=id)
+    denuncia.delete()
+    return redirect("/Denuncias")
+
+def formPapelada(request, id):
+    formPapelada = PapeladaForm(request.POST or None)
+    if formPapelada.is_valid() :
+        formPapelada.save()
+        return redirect("/Papelada")
+
+    pacote = {"formPapelada": formPapelada}
+    return render(request, "SAAB/formPapelada.html", pacote)
+
+def updatePapelada(request, id):
+    papelada = DocumentoArbitro.objects.get(pk=id)
+    formPapelada = PapeladaForm(request.POST or None, instance=papelada)
+    if formPapelada.is_valid() :
+        formPapelada.save()
+        return redirect("/Papelada")
+
+    pacote = {"formPapelada": formPapelada}
+    return render(request, "SAAB/formPapelada.html", pacote)
+
+def deletePapelada(request, id):
+    papelada = DocumentoArbitro.objects.get(pk=id)
+    papelada.delete()
+    return redirect("/Papelada")
+
