@@ -1,19 +1,26 @@
 from django.shortcuts import render, redirect
-from privado.models import Time, Conflito
-from privado.form import TimeForm, ConflitoForm
+from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro
+from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm, PolemicaVPForm, PolemicaForm, DenunciasForm, PapeladaForm
 
-def time(request):
+# essa função é só por enquanto
+def index(request):
+    return render(request, "SAAB/layout.html")
+
+def login(request):
+    return render(request, "SAAB/login.html")
+
+def times(request):
     time = Time.objects.all()
     parametros = {"time": time}  
-    return render(request, "SAAB/time.html", parametros)
+    return render(request, "SAAB/times.html", parametros)
 
-def createTime(request):
+def formTime(request):
     formTime = TimeForm(request.POST or None)
     if formTime.is_valid():
         formTime.save()
         return redirect("/times")
     pacote = {"form": formTime}
-    return render(request, "SAAB/formstime.html", pacote)
+    return render(request, "SAAB/formTime.html", pacote)
 
 def updateTime(request, id):
     aval = Time.objects.get(pk=id)
@@ -22,26 +29,25 @@ def updateTime(request, id):
         formTime.save()
         return redirect("/times")
     pacote = {"form": formTime}
-    return render(request, "SAAB/formstime.html", pacote)
+    return render(request, "SAAB/formTime.html", pacote)
 
 def deleteTime(request, id):
     aval = Time.objects.get(pk=id)
     aval.delete()
     return redirect("/times")
- 
-    
-def conflito(request):
-    conflito = Conflito.objects.all()
-    parametros = {"conflito": conflito}  
-    return render(request, "SAAB/conflito.html", parametros)
 
-def createConflito(request):
+def conflitos(request):
+    conflito = Conflito.objects.all()
+    parametros = {"conflito": conflito}
+    return render(request, "SAAB/conflitos.html", parametros)
+
+def formConflito(request):
     formConflito = ConflitoForm(request.POST or None)
     if formConflito.is_valid():
         formConflito.save()
         return redirect("/conflitos")
     pacote = {"form": formConflito}
-    return render(request, "SAAB/formsconflito.html", pacote)
+    return render(request, "SAAB/formconflito.html", pacote)
 
 def updateConflito(request, id):
     aval = Conflito.objects.get(pk=id)
@@ -50,8 +56,164 @@ def updateConflito(request, id):
         formConflito.save()
         return redirect("/conflitos")
     pacote = {"form": formConflito}
+    return render(request, "SAAB/formConflito.html", pacote)
 
 def deleteConflito(request, id):
     aval = Conflito.objects.get(pk=id)
     aval.delete()
     return redirect("/conflitos")
+
+def arbitros(request):
+    arbt = Arbitro.objects.all()
+    pacote = {"arbitros": arbt, "editArbitro": 123}
+    return render(request, "SAAB/arbitros.html", pacote)
+
+def cidades(request):
+    cidd = Cidade.objects.all()
+    pacote = {"cidades": cidd, "editCidade": 123}
+    return render(request, "SAAB/cidades.html", pacote)
+
+def formArbitro(request):
+    formArbitro = ArbitroForm(request.POST or None)
+    if formArbitro.is_valid() :
+        formArbitro.save()
+        return redirect("/arbitros")
+
+    pacote = {"formArbitro": formArbitro}
+    return render(request, "SAAB/formArbitro.html", pacote)
+
+def updateArbitro(request, id):
+    arbi = Arbitro.objects.get(pk=id)
+    formArbitro = ArbitroForm(request.POST or None, instance=arbi)
+    if formArbitro.is_valid() :
+        formArbitro.save()
+        return redirect("/arbitros")
+
+    pacote = {"formArbitro": formArbitro}
+    return render(request, "SAAB/formArbitro.html", pacote)
+
+def deleteArbitro(request, id):
+    arbi = Arbitro.objects.get(pk=id)
+    arbi.delete()
+    return redirect("/arbitros")
+
+def formCidade(request):
+    formCidade = CidadeForm(request.POST or None)
+    if formCidade.is_valid() :
+        formCidade.save()
+        return redirect("/cidades")
+
+    pacote = {"formCidade": formCidade}
+    return render(request, "SAAB/formCidade.html", pacote)
+
+def updateCidade(request, id):
+    cida = Cidade.objects.get(pk=id)
+    formCidade = CidadeForm(request.POST or None, instance=cida)
+    if formCidade.is_valid() :
+        formCidade.save()
+        return redirect("/cidades")
+
+    pacote = {"formCidade": formCidade}
+    return render(request, "SAAB/formCidade.html", pacote)
+
+def deleteCidade(request, id):
+    cida = Cidade.objects.get(pk=id)
+    cida.delete()
+    return redirect("/cidades")
+
+def formPolemica(request, id):
+    formPolemica = PolemicaForm(request.POST or None)
+    if formPolemica.is_valid() :
+        formPolemica.save()
+        return redirect("/polemicas")
+
+    pacote = {"formPolemica": formPolemica}
+    return render(request, "SAAB/formPolemica.html", pacote)
+
+def updatePolemica(request, id):
+    pole = DeclaracaoArbitro.objects.get(pk=id)
+    formPolemica = PolemicaForm(request.POST or None, instance=pole)
+    if formPolemica.is_valid() :
+        formPolemica.save()
+        return redirect("/polemicas")
+
+    pacote = {"formPolemica": formPolemica}
+    return render(request, "SAAB/formPolemica.html", pacote)
+
+def deletePolemica(request, id):
+    pole = DeclaracaoArbitro.objects.get(pk=id)
+    pole.delete()
+    return redirect("/polemicas")
+
+def formPolemicaVP(request, id):
+    formPolemicaVP = PolemicaVPForm(request.POST or None)
+    if formPolemicaVP.is_valid() :
+        formPolemicaVP.save()
+        return redirect("/polemicasvp")
+
+    pacote = {"formPolemicaVP": formPolemicaVP}
+    return render(request, "SAAB/formPolemicaVP.html", pacote)
+
+def updatePolemicaVP(request, id):
+    polevp = VidapubliArbitro.objects.get(pk=id)
+    formPolemicaVP = PolemicaVPForm(request.POST or None, instance=polevp)
+    if formPolemicaVP.is_valid() :
+        formPolemicaVP.save()
+        return redirect("/polemicasvp")
+
+    pacote = {"formPolemica": formPolemicaVP}
+    return render(request, "SAAB/formPolemicaVP.html", pacote)
+
+def deletePolemicaVP(request, id):
+    polevp = VidapubliArbitro.objects.get(pk=id)
+    polevp.delete()
+    return redirect("/polemicasvp")
+    
+def formDenuncias(request, id):
+    formDenuncias = DenunciasForm(request.POST or None)
+    if formDenuncias.is_valid() :
+        formDenuncias.save()
+        return redirect("/Denuncias")
+
+    pacote = {"formDenuncias": formDenuncias}
+    return render(request, "SAAB/formDenuncias.html", pacote)
+
+def updateDenuncias(request, id):
+    denuncia = DenunciaArbitro.objects.get(pk=id)
+    formDenuncias = DenunciasForm(request.POST or None, instance=denuncia)
+    if formDenuncias.is_valid() :
+        formDenuncias.save()
+        return redirect("/Denuncias")
+
+    pacote = {"formDenuncias": formDenuncias}
+    return render(request, "SAAB/formDenuncias.html", pacote)
+
+def deleteDenuncias(request, id):
+    denuncia = DenunciaArbitro.objects.get(pk=id)
+    denuncia.delete()
+    return redirect("/Denuncias")
+
+def formPapelada(request, id):
+    formPapelada = PapeladaForm(request.POST or None)
+    if formPapelada.is_valid() :
+        formPapelada.save()
+        return redirect("/Papelada")
+
+    pacote = {"formPapelada": formPapelada}
+    return render(request, "SAAB/formPapelada.html", pacote)
+
+def updatePapelada(request, id):
+    papelada = DocumentoArbitro.objects.get(pk=id)
+    formPapelada = PapeladaForm(request.POST or None, instance=papelada)
+    if formPapelada.is_valid() :
+        formPapelada.save()
+        return redirect("/Papelada")
+
+    pacote = {"formPapelada": formPapelada}
+    return render(request, "SAAB/formPapelada.html", pacote)
+
+def deletePapelada(request, id):
+    papelada = DocumentoArbitro.objects.get(pk=id)
+    papelada.delete()
+    return redirect("/Papelada")
+
