@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro
 from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm, PolemicaVPForm, PolemicaForm, DenunciasForm, PapeladaForm
+from django.db.models.aggregates import Count
 
 # essa função é só por enquanto
 def index(request):
@@ -73,6 +74,30 @@ def cidades(request):
     pacote = {"cidades": cidd, "editCidade": 123}
     return render(request, "SAAB/cidades.html", pacote)
 
+def formCidade(request):
+    formCidade = CidadeForm(request.POST or None)
+    if formCidade.is_valid() :
+        formCidade.save()
+        return redirect("/cidades")
+
+    pacote = {"formCidade": formCidade}
+    return render(request, "SAAB/formCidade.html", pacote)
+
+def updateCidade(request, id):
+    cida = Cidade.objects.get(pk=id)
+    formCidade = CidadeForm(request.POST or None, instance=cida)
+    if formCidade.is_valid() :
+        formCidade.save()
+        return redirect("/cidades")
+
+    pacote = {"formCidade": formCidade}
+    return render(request, "SAAB/formCidade.html", pacote)
+
+def deleteCidade(request, id):
+    cida = Cidade.objects.get(pk=id)
+    cida.delete()
+    return redirect("/cidades")
+
 def formArbitro(request):
     formArbitro = ArbitroForm(request.POST or None)
     if formArbitro.is_valid() :
@@ -97,29 +122,37 @@ def deleteArbitro(request, id):
     arbi.delete()
     return redirect("/arbitros")
 
-def formCidade(request):
-    formCidade = CidadeForm(request.POST or None)
-    if formCidade.is_valid() :
-        formCidade.save()
-        return redirect("/cidades")
+def detalhamentoArbitro(request, id):
+    arbi = Arbitro.objects.get(pk=id)
+    ContDe= DeclaracaoArbitro.objects.values("arbitro_id"). aggregate(decla_count=Count ('*'))
+    ContDenun= DenunciaArbitro.objects.values("arbitro_id"). aggregate(denun_count=Count ('*'))
+    ContVp= VidapubliArbitro.objects.values("arbitro_id"). aggregate(vp_count=Count ('*'))
+    ContDoc= DocumentoArbitro.objects.values("arbitro_id"). aggregate(doc_count=Count ('*'))
+    QuantDoc = {"ContDoc": ContDoc}
+    context = {
+        'arbitro': arbi,
+        'ContDe': ContDe,
+        'ContDenun': ContDenun,
+        'ContVp': ContVp,
+        'ContDoc': ContDoc
+    }
 
-    pacote = {"formCidade": formCidade}
-    return render(request, "SAAB/formCidade.html", pacote)
+    return render(request, "SAAB/detalhamentoArbitro.html", context)
 
-def updateCidade(request, id):
-    cida = Cidade.objects.get(pk=id)
-    formCidade = CidadeForm(request.POST or None, instance=cida)
-    if formCidade.is_valid() :
-        formCidade.save()
-        return redirect("/cidades")
-
-    pacote = {"formCidade": formCidade}
-    return render(request, "SAAB/formCidade.html", pacote)
-
-def deleteCidade(request, id):
-    cida = Cidade.objects.get(pk=id)
-    cida.delete()
-    return redirect("/cidades")
+def InfoAdicionais (request, id):
+    arbi = Arbitro.objects.get(pk=id)
+    Decla = DeclaracaoArbitro.objects.filter(arbitro=id)
+    Denun = DenunciaArbitro.objects.filter(arbitro=id)
+    VidaPub = VidapubliArbitro.objects.filter(arbitro=id)
+    Doc = DocumentoArbitro.objects.filter(arbitro=id)
+    context = {
+        'arbitro': arbi,
+        'Decla': Decla,
+        'Denun': Denun,
+        'VidaPub': VidaPub,
+        'Doc': Doc
+    }
+    return render(request, "SAAB/InfoAdicionais.html", context)
 
 def formPolemica(request, id):
     formPolemica = PolemicaForm(request.POST or None)

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>{{ arbitro }}</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Peso</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for i in Decla %}
+            <tr>
+                <td>{{ i.data }}</td>
+                <td>{{ i.descricao }}</td>
+                <td>{{ i.peso }}</td>
+                <td>
+                    <a href="#"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                    <a href="#"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Peso</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for i in Denun %}
+            <tr>
+                <td>{{ i.data }}</td>
+                <td>{{ i.descricao }}</td>
+                <td>{{ i.peso }}</td>
+                <td>
+                    <a href="#"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                    <a href="#"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Peso</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for i in VidaPub %}
+            <tr>
+                <td>{{ i.data }}</td>
+                <td>{{ i.descricao }}</td>
+                <td>{{ i.peso }}</td>
+                <td>
+                    <a href="#"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                    <a href="#"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Peso</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for i in Doc %}
+            <tr>
+                <td>{{ i.data }}</td>
+                <td>{{ i.descricao }}</td>
+                <td>{{ i.peso }}</td>
+                <td>
+                    <a href="#"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                    <a href="#"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

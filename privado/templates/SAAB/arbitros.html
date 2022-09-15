@@ -25,7 +25,8 @@
             </thead>
             {% for i in arbitros %}
                 <tr>
-                    <td>{{ i.nome }}</td>
+                    <td>
+                        <a href="{% url 'url_detalhamentoArbitro' i.codigo %}">{{ i.nome }}</a></td>
                     <td>{{ i.cidade }}</td>
                     <td>{{ i.formafisica }}</td>
                     <td>
