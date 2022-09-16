@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect
 from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro
-from privado.form import TimeForm, ConflitoForm, ArbitroForm, CidadeForm, PolemicaVPForm, PolemicaForm, DenunciasForm, PapeladaForm
+from privado.form import *
 from django.db.models.aggregates import Count
-
-# essa função é só por enquanto
-def index(request):
-    return render(request, "SAAB/layout.html")
 
 def login(request):
     return render(request, "SAAB/login.html")
@@ -79,7 +75,6 @@ def formCidade(request):
     if formCidade.is_valid() :
         formCidade.save()
         return redirect("/cidades")
-
     pacote = {"formCidade": formCidade}
     return render(request, "SAAB/formCidade.html", pacote)
 
@@ -89,7 +84,6 @@ def updateCidade(request, id):
     if formCidade.is_valid() :
         formCidade.save()
         return redirect("/cidades")
-
     pacote = {"formCidade": formCidade}
     return render(request, "SAAB/formCidade.html", pacote)
 
@@ -250,3 +244,11 @@ def deletePapelada(request, id):
     papelada.delete()
     return redirect("/Papelada")
 
+def sorteio(request):
+    formPartida = PartidaForm(request.POST or None)
+    arbt = Arbitro.objects.all()
+    if formPartida.is_valid() :
+        formPartida.save()
+        return redirect("")
+    pacote = {"formPartida": formPartida, "arbitros": arbt}
+    return render(request, "SAAB/sorteio.html", pacote)

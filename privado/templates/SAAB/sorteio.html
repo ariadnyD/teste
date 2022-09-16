@@ -1,0 +1,39 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sorteio</title>
+    </head>
+    <body>
+        <h1 class="mt-4">Sorteio</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">Sorteio</li>
+            <li class="breadcrumb-item active">Novo Sorteio</li>
+        </ol>
+        <form method="post" class="w-75">
+            {% csrf_token %}
+            {{ formPartida|crispy }}
+            <div class="w-100 container mt-2">
+                <div class="row">
+                    <table class="table table-bordered col-sm">
+                        <thead>
+                            <tr>
+                                <th>Possíveis Árbitros</th>
+                            </tr>
+                        </thead>
+                        {% for i in arbitros %}
+                            <tr>
+                                <td>{{ i.nome }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <div class="col-sm text-center"><button type="submit" class="mt-1 btn btn-success btn-lg">Sortear Árbitro</button></div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SAAB</title>
+    </head>
+    <body>
+        {% for i in partidas %}
+            <div style="border: solid;">
+                <h2>Partida dia {{ i.data }}</h2>
+                <h3>{{ i.local }} Vs {{ i.visitante }}</h3>
+                <p>Árbitro escalado: <b>{{ i.arbitro }}</b></p>
+            </div>
+            <br>
+        {% endfor %}
+    </body>
+</html>
