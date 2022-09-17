@@ -1,0 +1,37 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Partidas</title>
+</head>
+
+<body>
+<h1 class="mt-4">Partidas</h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Time 1</th>
+      <th>Time 2</th>
+      <th>Árbitro</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+{% for i in partidas %}
+  <tr>
+    <th>{{ i.local }}</th>
+    <th>{{ i.visitante }}</th>
+    <th>{{ i.arbitro }}</th>
+    <th></th>
+  </tr>
+  {% endfor %}
+</table>
+<a href="{% url 'url_sorteio' %}"><button class="btn btn-primary">Novo Sorteio</button></a>
+
+
+</body>
+</html>
+{% endblock %}

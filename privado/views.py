@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro
+from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro, Partida
 from privado.form import *
 from django.db.models.aggregates import Count
 
@@ -252,3 +252,11 @@ def sorteio(request):
         return redirect("")
     pacote = {"formPartida": formPartida, "arbitros": arbt}
     return render(request, "SAAB/sorteio.html", pacote)
+
+def inicioAdmin(request):
+    return render(request, "SAAB/inicialAdmin.html")
+
+def partidas(request):
+    part = Partida.objects.all()
+    parametros = {"partidas": part}  
+    return render(request, "SAAB/inicialAdmin.html", parametros)

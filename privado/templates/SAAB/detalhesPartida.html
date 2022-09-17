@@ -1,0 +1,45 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <header>
+    <div class="logo">
+      <img src="#" alt="logo">
+      <h1>SAAB</h1>
+    </div>
+    <div class="profile"></div>
+  </header>
+
+<main>
+  <h3>Detalhamento da partidas</h3>
+
+  <div class="box">
+     <p>Time 1:</p>{%  %}
+     <p>Time 2:</p>{%  %}
+     <p>Data:</p>{%  %}
+     <p>Árbitro sorteado:</p>{%  %}
+     <p>Local:</p>{%  %}
+     <p>Horário:</p>{%  %}
+
+  </div>
+
+  <h3>Conflitos de partida</h3>
+
+  <div class="box">
+    
+  </div>
+</main>
+
+</body>
+</html>
+{% endblock %}

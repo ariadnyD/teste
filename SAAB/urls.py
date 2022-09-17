@@ -38,5 +38,7 @@ urlpatterns = [
     path('updatePapelada/<int:id>', updatePapelada, name="url_updatePapelada"),
     path('deletePapelada/<int:id>', deletePapelada, name="url_deletePapelada"),
     path('sorteio/', sorteio, name="url_sorteio"),
+    path('partidas/', inicioAdmin, name = "url_administracao"),
+   # path('detalhes/<int:id>', detalhes, name = "url_detalhes")
 
 ]

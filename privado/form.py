@@ -45,3 +45,4 @@ class PapeladaForm(ModelForm):
     class Meta:
         model = DocumentoArbitro
         fields = ["codigo" , "arbitro","descricao","data","peso" ]
+
