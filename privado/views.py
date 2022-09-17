@@ -254,9 +254,6 @@ def sorteio(request):
     return render(request, "SAAB/sorteio.html", pacote)
 
 def inicioAdmin(request):
-    return render(request, "SAAB/inicialAdmin.html")
-
-def partidas(request):
     part = Partida.objects.all()
     parametros = {"partidas": part}  
     return render(request, "SAAB/inicialAdmin.html", parametros)
