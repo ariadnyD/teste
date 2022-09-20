@@ -1,0 +1,47 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h1 class="mt-4">Detalhamento da partidas</h1>
+
+  <div>
+    {% for i in detalhes %} 
+
+     <p>Time 1:{{ i.local }}</p>
+     <p>Time 2:{{ i.visitante }}</p>
+     <p>Data:{{ i.data }}</p>
+     <p>Árbitro sorteado:{{ i.arbitro }}</p>
+     <p>Local:{{ i.local }}</p>
+
+     {% endfor %}
+  </div>
+
+  <h3>Conflitos de partida</h3>
+
+  {% for i in Conflitos %}
+    <table class="table table-bordered">
+      <tr>
+        <th>
+          {{ i.descricao }}
+        </th>
+        <th>
+          {{ i.errotecnico }}
+        </th>
+      </tr>
+    </table>
+    {% endfor %}
+</main>
+
+</body>
+</html>
+{% endblock %}

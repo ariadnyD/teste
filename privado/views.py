@@ -256,4 +256,30 @@ def sorteio(request):
 def inicioAdmin(request):
     part = Partida.objects.all()
     parametros = {"partidas": part}  
-    return render(request, "SAAB/inicialAdmin.html", parametros)
+    return render(request, "SAAB/partidas.html", parametros)
+
+def updatePartida(request, id):
+    partida = Partida.objects.get(pk=id)
+    formPartida = PartidaForm(request.POST or None, instance=partida)
+
+    if formPartida.is_valid():
+        formPartida.save()
+        return redirect('url_partida')
+
+    pacote = {"formPartida": formPartida}
+    return render(request, "SAAB/formPartida.html", pacote)
+
+def deletePartida(request, id):
+    partida = Partida.objects.get(pk=id)
+    partida.delete()
+    return redirect("/partida")
+
+def detalhamentoPartida(request, id):
+    conflitos = Conflito.objects.filter(pk=id)
+    partida = Partida.objects.filter(pk=id)
+    detalhes = {"detalhes":partida, "conflitos":conflitos}
+    return render(request, "SAAB/detalhamentoPartida.html", detalhes)
+
+
+
+   

@@ -1,0 +1,46 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SAAB | Partidas</title>
+</head>
+
+<body>
+  
+<h1 class="mt-4">Partidas</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Partidas</li>
+    <li class="breadcrumb-item active">Partidas Cadastradas</li>
+</ol>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Times</th>
+      <th>Árbitro</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+{% for i in partidas %}
+  <tr>
+    <th>
+      <a href="{% url 'url_detalhamentoPartida' i.codigo %}">{{ i.local }} X {{ i.visitante }}</a>
+    </th>
+    <th>{{ i.arbitro }}</th>
+    <th> 
+      <a href="{% url 'url_updatePartida' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+      <a href="{% url 'url_deletePartida' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+    </th>
+  </tr>
+  {% endfor %}
+</table>
+<a href="{% url 'url_sorteio' %}"><button class="btn btn-primary">Novo Sorteio</button></a>
+
+
+</body>
+</html>
+{% endblock %}
