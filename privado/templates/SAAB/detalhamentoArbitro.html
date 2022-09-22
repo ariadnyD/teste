@@ -1,17 +1,34 @@
+{% extends 'SAAB/layout.html' %}
+{% block conteudo %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>{{ arbitro }}</p>
-    <p>{{ ContDe }}</p>
-    <p>{{ ContDenun }}</p>
-    <p>{{ ContVp }}</p>
-    <p>{{ ContDoc }}</p>
-    <a href="{% url 'url_InfoAdicionais' arbitro.codigo %}"><button  class="btn btn-primary">Editar Informações</button></a>
-</body>
+    <head>
+        <title>Detalhamento do arbitro</title>
+    </head>
+    <body>
+        <h1 class="mt-4">{{ arbitro }}</h1>
+        <div class="card mb-4"> 
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p>Data de Nascimento: {{ arbitro.datanasc }} </p>
+                        <p>Cidade: {{ arbitro.cidade }} </p>
+                        <p>Forma Física: {{ arbitro.formafisica }} </p>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p style="font-weight: bold">Informações adicionais: </p>
+                        <p>Quantidade de declarações polêmicas: {{ ContDe.decla_count }}</p>
+                        <p>Quantidade de denúncias que está relacionado: {{ ContDenun.denun_count }}</p>
+                        <p>Quantidade de polêmicas na vida pública: {{ ContVp.vp_count }}</p>
+                        <p>Quantidade de documentação entregue incorreta: {{ ContDoc.doc_count }}</p>
+                        <a href="{% url 'url_InfoAdicionais' arbitro.codigo %}"><button  class="btn btn-primary">Editar Informações</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
+{% endblock %}

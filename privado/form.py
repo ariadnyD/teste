@@ -14,7 +14,7 @@ class ConflitoForm(ModelForm):
 class ArbitroForm(ModelForm):
     class Meta:
         model = Arbitro
-        fields = ["nome", "cidade", "formafisica"]
+        fields = ["nome", "datanasc", "cidade", "formafisica"]
 
 class CidadeForm(ModelForm):
     class Meta:

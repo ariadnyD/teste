@@ -122,7 +122,6 @@ def detalhamentoArbitro(request, id):
     ContDenun= DenunciaArbitro.objects.values("arbitro_id"). aggregate(denun_count=Count ('*'))
     ContVp= VidapubliArbitro.objects.values("arbitro_id"). aggregate(vp_count=Count ('*'))
     ContDoc= DocumentoArbitro.objects.values("arbitro_id"). aggregate(doc_count=Count ('*'))
-    QuantDoc = {"ContDoc": ContDoc}
     context = {
         'arbitro': arbi,
         'ContDe': ContDe,

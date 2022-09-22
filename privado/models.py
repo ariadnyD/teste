@@ -27,6 +27,7 @@ class Time(models.Model):
 
 class Arbitro(models.Model):
     codigo = models.AutoField(primary_key=True)
+    datanasc = models.DateField()
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     formafisica = models.BooleanField()
