@@ -27,14 +27,14 @@
   </thead>
 {% for i in partidas %}
   <tr>
-    <th>
+    <td>
       <a href="{% url 'url_detalhamentoPartida' i.codigo %}">{{ i.local }} X {{ i.visitante }}</a>
-    </th>
-    <th>{{ i.arbitro }}</th>
-    <th> 
+    </td>
+    <td>{{ i.arbitro }}</td>
+    <td> 
       <a href="{% url 'url_updatePartida' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
       <a href="{% url 'url_deletePartida' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-    </th>
+    </td>
   </tr>
   {% endfor %}
 </table>

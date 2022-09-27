@@ -271,12 +271,13 @@ def updatePartida(request, id):
 def deletePartida(request, id):
     partida = Partida.objects.get(pk=id)
     partida.delete()
-    return redirect("/partida")
+    return redirect("/partidas")
 
 def detalhamentoPartida(request, id):
-    conflitos = Conflito.objects.filter(pk=id)
+    conflitos = Conflito.objects.all()
     partida = Partida.objects.filter(pk=id)
-    detalhes = {"detalhes":partida, "conflitos":conflitos}
+    time = Time.objects.filter(pk=id)
+    detalhes = {"detalhes":partida, "conflitos":conflitos, "time":time}
     return render(request, "SAAB/detalhamentoPartida.html", detalhes)
 
 

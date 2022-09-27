@@ -8,37 +8,62 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>SAAB | Detlhamento de partida</title>
 </head>
 <body>
   
   <h1 class="mt-4">Detalhamento da partidas</h1>
 
-  <div>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Partidas</li>
+    <li class="breadcrumb-item active">Detalhamento de Partida</li>
+</ol>
+
+
     {% for i in detalhes %} 
-
-     <p>Time 1:{{ i.local }}</p>
-     <p>Time 2:{{ i.visitante }}</p>
-     <p>Data:{{ i.data }}</p>
-     <p>Árbitro sorteado:{{ i.arbitro }}</p>
-     <p>Local:{{ i.local }}</p>
-
-     {% endfor %}
-  </div>
-
-  <h3>Conflitos de partida</h3>
-
-  {% for i in Conflitos %}
     <table class="table table-bordered">
       <tr>
-        <th>
-          {{ i.descricao }}
-        </th>
-        <th>
-          {{ i.errotecnico }}
-        </th>
+        <th>Da casa:</th><td>{{ i.local }}</td>
+      </tr>
+      <tr>
+        <th>Visitante:</th><td>{{ i.visitante }}</td>
+      </tr>
+
+      <tr>
+        <th>Data:</th><td>{{ i.data }}</td>
+      </tr>
+
+      <tr>
+        <th>Árbitro selecionado:</th><td>{{ i.arbitro }}</td>
       </tr>
     </table>
+    {% endfor %}
+
+  <br>
+  <h2>Conflitos da partida</h2>
+
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Partidas</li>
+    <li class="breadcrumb-item active">Conflitos da partida</li>
+</ol>
+
+  {% for i in conflitos %}
+    <table class="table table-bordered">
+      <tr>
+        <th>Descrição:</th>
+        <td>
+        <p>{{ i.descricao }}</p>
+      </td>
+   </tr>
+
+      <tr>
+        <th>Falha técnica:</th>
+        <td>
+        <p>{{ i.errotecnico }}</p>
+      </td>
+    </tr>
+    </table>
+          
     {% endfor %}
 </main>
 
