@@ -118,10 +118,10 @@ def deleteArbitro(request, id):
 
 def detalhamentoArbitro(request, id):
     arbi = Arbitro.objects.get(pk=id)
-    ContDe= DeclaracaoArbitro.objects.values("arbitro_id"). aggregate(decla_count=Count ('*'))
-    ContDenun= DenunciaArbitro.objects.values("arbitro_id"). aggregate(denun_count=Count ('*'))
-    ContVp= VidapubliArbitro.objects.values("arbitro_id"). aggregate(vp_count=Count ('*'))
-    ContDoc= DocumentoArbitro.objects.values("arbitro_id"). aggregate(doc_count=Count ('*'))
+    ContDe= DeclaracaoArbitro.objects.filter(arbitro = id). aggregate(decla_count=Count ('*'))
+    ContDenun= DenunciaArbitro.objects.filter(arbitro = id). aggregate(denun_count=Count ('*'))
+    ContVp= VidapubliArbitro.objects.filter(arbitro = id). aggregate(vp_count=Count ('*'))
+    ContDoc= DocumentoArbitro.objects.filter(arbitro = id). aggregate(doc_count=Count ('*'))
     context = {
         'arbitro': arbi,
         'ContDe': ContDe,
