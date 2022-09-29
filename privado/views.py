@@ -151,7 +151,7 @@ def formPolemica(request, id):
     formPolemica = PolemicaForm(request.POST or None)
     if formPolemica.is_valid() :
         formPolemica.save()
-        return redirect("/polemicas")
+        return redirect("/declaPolemicas")
 
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
@@ -161,7 +161,7 @@ def updatePolemica(request, id):
     formPolemica = PolemicaForm(request.POST or None, instance=pole)
     if formPolemica.is_valid() :
         formPolemica.save()
-        return redirect("/polemicas")
+        return redirect("/declaPolemicas")
 
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
@@ -169,7 +169,7 @@ def updatePolemica(request, id):
 def deletePolemica(request, id):
     pole = DeclaracaoArbitro.objects.get(pk=id)
     pole.delete()
-    return redirect("/polemicas")
+    return redirect("/declaPolemicas")
 
 def formPolemicaVP(request, id):
     formPolemicaVP = PolemicaVPForm(request.POST or None)
@@ -187,7 +187,7 @@ def updatePolemicaVP(request, id):
         formPolemicaVP.save()
         return redirect("/polemicasvp")
 
-    pacote = {"formPolemica": formPolemicaVP}
+    pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
 
 def deletePolemicaVP(request, id):
