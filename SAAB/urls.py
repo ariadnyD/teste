@@ -28,20 +28,20 @@ urlpatterns = [
     path('InfoAdicionais/<int:id>', InfoAdicionais, name="url_InfoAdicionais"),
 
     path('declaPolemicas/<int:id>', formPolemica, name="url_declaPolemicas"),
-    path('updateDeclaPolemica/<int:id>', updatePolemica, name="url_updateDeclaPolemica"),
-    path('deleteDeclaPolemica/<int:id>', deletePolemica, name="url_deleteDeclaPolemica"),
+    path('updateDeclaPolemica/<int:ida>/<int:id>', updatePolemica, name="url_updateDeclaPolemica"),
+    path('deleteDeclaPolemica/<int:ida>/<int:id>', deletePolemica, name="url_deleteDeclaPolemica"),
 
     path('polemicasvp/<int:id>', formPolemicaVP, name="url_polemicasvp"),
-    path('updatePolemicaVP/<int:id>', updatePolemicaVP, name="url_updatePolemicaVP"),
-    path('deletePolemicaVP/<int:id>', deletePolemicaVP, name="url_deletePolemicaVP"),
+    path('updatePolemicaVP/<int:ida>/<int:id>', updatePolemicaVP, name="url_updatePolemicaVP"),
+    path('deletePolemicaVP/<int:ida>/<int:id>', deletePolemicaVP, name="url_deletePolemicaVP"),
 
     path('Denuncias/<int:id>', formDenuncias, name="url_denuncias"),
-    path('updateDenuncias/<int:id>', updateDenuncias, name="url_updateDenuncias"),
-    path('deleteDenuncias/<int:id>', deleteDenuncias, name="url_deleteDenuncias"),
+    path('updateDenuncias/<int:ida>/<int:id>', updateDenuncias, name="url_updateDenuncias"),
+    path('deleteDenuncias/<int:ida>/<int:id>', deleteDenuncias, name="url_deleteDenuncias"),
 
     path('Papelada/<int:id>', formPapelada, name="url_papelada"),
-    path('updatePapelada/<int:id>', updatePapelada, name="url_updatePapelada"),
-    path('deletePapelada/<int:id>', deletePapelada, name="url_deletePapelada"),
+    path('updatePapelada/<int:ida>/<int:id>', updatePapelada, name="url_updatePapelada"),
+    path('deletePapelada/<int:ida>/<int:id>', deletePapelada, name="url_deletePapelada"),
 
     path('sorteio/', sorteio, name="url_sorteio"),
     path('partidas/', inicioAdmin, name = "url_partida"),

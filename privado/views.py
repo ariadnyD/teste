@@ -151,31 +151,31 @@ def formPolemica(request, id):
     formPolemica = PolemicaForm(request.POST or None)
     if formPolemica.is_valid() :
         formPolemica.save()
-        return redirect("/declaPolemicas")
+        return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
 
-def updatePolemica(request, id):
+def updatePolemica(request, ida, id):
     pole = DeclaracaoArbitro.objects.get(pk=id)
     formPolemica = PolemicaForm(request.POST or None, instance=pole)
-    if formPolemica.is_valid() :
+    if formPolemica.is_valid():
         formPolemica.save()
-        return redirect("/declaPolemicas")
+        return redirect("/InfoAdicionais/"+str(ida))
 
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
 
-def deletePolemica(request, id):
+def deletePolemica(request, ida, id):
     pole = DeclaracaoArbitro.objects.get(pk=id)
     pole.delete()
-    return redirect("/declaPolemicas")
+    return redirect("/InfoAdicionais/"+str(ida))
 
 def formPolemicaVP(request, id):
     formPolemicaVP = PolemicaVPForm(request.POST or None)
     if formPolemicaVP.is_valid() :
         formPolemicaVP.save()
-        return redirect("/polemicasvp")
+        return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
@@ -185,63 +185,63 @@ def updatePolemicaVP(request, id):
     formPolemicaVP = PolemicaVPForm(request.POST or None, instance=polevp)
     if formPolemicaVP.is_valid() :
         formPolemicaVP.save()
-        return redirect("/polemicasvp")
+        return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
 
-def deletePolemicaVP(request, id):
+def deletePolemicaVP(request, ida, id):
     polevp = VidapubliArbitro.objects.get(pk=id)
     polevp.delete()
-    return redirect("/polemicasvp")
+    return redirect("/InfoAdicionais/"+str(ida))
     
 def formDenuncias(request, id):
     formDenuncias = DenunciasForm(request.POST or None)
     if formDenuncias.is_valid() :
         formDenuncias.save()
-        return redirect("/Denuncias")
+        return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formDenuncias": formDenuncias}
     return render(request, "SAAB/formDenuncias.html", pacote)
 
-def updateDenuncias(request, id):
+def updateDenuncias(request, ida, id):
     denuncia = DenunciaArbitro.objects.get(pk=id)
     formDenuncias = DenunciasForm(request.POST or None, instance=denuncia)
     if formDenuncias.is_valid() :
         formDenuncias.save()
-        return redirect("/Denuncias")
+        return redirect("/InfoAdicionais/"+str(ida))
 
     pacote = {"formDenuncias": formDenuncias}
     return render(request, "SAAB/formDenuncias.html", pacote)
 
-def deleteDenuncias(request, id):
+def deleteDenuncias(request, ida, id):
     denuncia = DenunciaArbitro.objects.get(pk=id)
     denuncia.delete()
-    return redirect("/Denuncias")
+    return redirect("/InfoAdicionais/"+str(ida))
 
 def formPapelada(request, id):
     formPapelada = PapeladaForm(request.POST or None)
     if formPapelada.is_valid() :
         formPapelada.save()
-        return redirect("/Papelada")
+        return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formPapelada": formPapelada}
     return render(request, "SAAB/formPapelada.html", pacote)
 
-def updatePapelada(request, id):
+def updatePapelada(request, ida, id):
     papelada = DocumentoArbitro.objects.get(pk=id)
     formPapelada = PapeladaForm(request.POST or None, instance=papelada)
     if formPapelada.is_valid() :
         formPapelada.save()
-        return redirect("/Papelada")
+        return redirect("/InfoAdicionais/"+str(ida))
 
     pacote = {"formPapelada": formPapelada}
     return render(request, "SAAB/formPapelada.html", pacote)
 
-def deletePapelada(request, id):
+def deletePapelada(request, ida, id):
     papelada = DocumentoArbitro.objects.get(pk=id)
     papelada.delete()
-    return redirect("/Papelada")
+    return redirect("/InfoAdicionais/"+str(ida))
 
 def sorteio(request):
     formPartida = PartidaForm(request.POST or None)
