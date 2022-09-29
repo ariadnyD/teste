@@ -21,49 +21,32 @@
 
 
     {% for i in detalhes %} 
-    <table class="table table-bordered">
-      <tr>
-        <th>Da casa:</th><td>{{ i.local }}</td>
-      </tr>
-      <tr>
-        <th>Visitante:</th><td>{{ i.visitante }}</td>
-      </tr>
 
-      <tr>
-        <th>Data:</th><td>{{ i.data }}</td>
-      </tr>
+    <div class="card mb-4">
+      <div class="card-body"> 
+        <div class="card mb-4">
+          <div class="card-body">
+            <p>Da casa: {{ i.local }}</p>
+            <p>Visitante: {{ i.visitante }}</p>
+            <p>Data: {{ i.data }}</p>
+            <p>Árbitro selecionado: {{ i.arbitro }}</p>
+          </div>
+        </div>
 
-      <tr>
-        <th>Árbitro selecionado:</th><td>{{ i.arbitro }}</td>
-      </tr>
-    </table>
     {% endfor %}
-
-  <br>
-  <h2>Conflitos da partida</h2>
-
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item">Partidas</li>
-    <li class="breadcrumb-item active">Conflitos da partida</li>
-</ol>
-
+    
   {% for i in conflitos %}
-    <table class="table table-bordered">
-      <tr>
-        <th>Descrição:</th>
-        <td>
-        <p>{{ i.descricao }}</p>
-      </td>
-   </tr>
 
-      <tr>
-        <th>Falha técnica:</th>
-        <td>
-        <p>{{ i.errotecnico }}</p>
-      </td>
-    </tr>
-    </table>
-          
+       <div class="card mb-4">
+        <div class="card-body">
+            <p style="font-weight: bold">Conflitos da partida:</p>
+            <p>Descrição: {{ i.descricao }}</p>
+            <p>Falha técnica: {{ i.errotecnico }}</p>
+        </div>     
+       </div> 
+      </div>
+    </div>
+
     {% endfor %}
 </main>
 
