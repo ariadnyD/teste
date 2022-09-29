@@ -180,12 +180,12 @@ def formPolemicaVP(request, id):
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
 
-def updatePolemicaVP(request, id):
+def updatePolemicaVP(request, ida, id):
     polevp = VidapubliArbitro.objects.get(pk=id)
     formPolemicaVP = PolemicaVPForm(request.POST or None, instance=polevp)
     if formPolemicaVP.is_valid() :
         formPolemicaVP.save()
-        return redirect("/InfoAdicionais/"+str(id))
+        return redirect("/InfoAdicionais/"+str(ida))
 
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
