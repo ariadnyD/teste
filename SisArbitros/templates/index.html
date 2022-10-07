@@ -1,17 +1,216 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>SAAB</title>
-    </head>
-    <body>
-        {% for i in partidas %}
-            <div style="border: solid;">
-                <h2>Partida dia {{ i.data }}</h2>
-                <h3>{{ i.local }} Vs {{ i.visitante }}</h3>
-                <p>Árbitro escalado: <b>{{ i.arbitro }}</b></p>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>SAAB</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="{% static '/img/SAAB-logo2.0.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static '/img/SAAB-logo2.0.png' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    
+    <!-- THEME CSS
+	================================================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static '/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{% static '/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- manin stylesheet -->
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+
+<header class="header-navigation d-none d-lg-block">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="{% url 'url_index' %}">
+                        <h1><img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="w-25 d-inline"> <!-- Replace Logo Here -->SAAB</h1>
+                    </a>
+                </div>
+                <!-- End Logo -->
             </div>
-            <br>
-        {% endfor %}
-    </body>
+            <div class="col-xs-12 col-sm-9 col-md-9">
+                <div class="top-ad-banner float-right">
+                    <a href="#">
+                        <img src="{% static '/img/saab-ad.png' %}" class="img-fluid" alt="banner-ads">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="main-navbar clearfix bg-dark ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg site-main-nav navigation">
+                      <a class="navbar-brand d-lg-none" href="index.html">
+                        <img src="images/logos/footer-logo.png" alt=""> 
+                     </a>
+  
+                  <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>
+                  </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Conta
+                                </a>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="{% url 'url_login' %}">Log In</a>
+                                </div>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="#">Sobre</a>
+                            </li>
+                        </ul>
+                        <div class="nav-search ml-auto d-none d-lg-block">
+                            <span id="search">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <form class="site-search" method="get">
+        <input type="text" id="searchInput" name="site_search" placeholder="Buscar por partida" autofocus="">
+        <div class="search-close">
+            <span class="close-search">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+    </form>
+</div>
+
+<div class="py-30"></div>
+
+<section class="block-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+				<div class="news-style-one">
+                    <h3 class="news-title">
+                        <span>últimos sorteios</span>
+                    </h3>
+                    {% for i in partidas %}
+                        <div class="post-navigation rounded w-100 shadow">
+                            <div class="item">
+                                <div class="post-block-wrapper clearfix mb-1">
+                                    <div class="post-content container">
+                                        <h6 class="text-uppercase text-light mb-3">Partida dia {{ i.data }}</h6>
+                                        <div class="row">
+                                            <div class="col-lg-4 w-50 mt-2 bg-light rounded">
+                                                <h2 class="post-title text-success mt-2"><i class="fa fa-shield" aria-hidden="true"></i>&nbsp;&nbsp;{{ i.local }}</h2>
+                                                <h2 class="post-title text-success mt-2"><i class="fa fa-shield" aria-hidden="true"></i>&nbsp;&nbsp;{{ i.visitante }}</h2>
+                                            </div>
+                                            <div class="col-lg-6 w-50">
+                                                <h6 class="mt-2 text-light">Árbitro escalado:</h6>
+                                                <h2 class="mt-2 text-light">{{ i.arbitro }}</h2>
+                                            </div>
+                                        </div>
+                                        <h6 class="float-right"><a href="#" class="text-light "><u>Ver mais</u></a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h3 class="news-title">
+                            <span>Notícias da Arbitragem</span>
+                        </h3>
+                        <div class="post-overlay-wrapper shadow">
+                            <div class="post-thumbnail">
+                                <img class="img-fluid" src="{% static '/img/news-01.jpg' %}" alt="post-thumbnail"/>
+                            </div>
+                            <div class="post-content">
+                                <h2 class="post-title">
+                                    <a href="single-post.html">First Look At Self-Portrait's Autumn Collection...</a>
+                                </h2>
+                            <div class="post-meta white">
+                            <span class="posted-time"><i class="fa-regular fa-clock mr-1"></i>17 jun,2019</span>
+                            <span> by </span>
+                            <span class="post-author">
+                                <a href="author.html">Jammy Anderson</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <nav aria-label="pagination-wrapper" class="pagination-wrapper">
+        <ul class="pagination justify-content-center">
+            <li class="page-item active">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
+                <span class="">Previous</span>
+            </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span class="">Next</span>
+                <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</section>
+
+<footer class="footer footer-main ">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-12 col-lg-6 text-center">
+                <a href="index.html"><img src="{% static '/img/saab-logo-letras.png' %}" alt="" class="img-fluid w-25"></a>
+                <div class="copyright-text text-center">
+                    <p class="mb-0 mt-4">© All Copyright Reserved to - <a href="https://themefisher.com/" target="_blank">SAAB</a></p>
+                </div>
+            </div>
+
+            <div class="scroll-to-top">
+                <button class="btn btn-primary" title="Back to Top">
+                    <i class="fa fa-angle-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- THEME JAVASCRIPT FILES
+================================================== -->
+<!-- initialize jQuery Library -->
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+<!-- Bootstrap jQuery -->
+<script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="{% static '/plugins/google-map/gmap.js' %}"></script>
+<!-- main js -->
+<script src="{% static '/js/custom.js' %}"></script>
+
+</body>
 </html>

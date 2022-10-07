@@ -248,7 +248,7 @@ def sorteio(request):
     arbt = Arbitro.objects.all()
     if formPartida.is_valid() :
         formPartida.save()
-        return redirect("")
+        return redirect("/")
     pacote = {"formPartida": formPartida, "arbitros": arbt}
     return render(request, "SAAB/sorteio.html", pacote)
 
