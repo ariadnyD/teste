@@ -1,3 +1,6 @@
+from threading import local
+from django import forms as django_forms
+from django.contrib.auth import forms
 from django.forms import ModelForm
 from privado.models import Time, Conflito, Arbitro, Cidade, DeclaracaoArbitro, VidapubliArbitro,  DenunciaArbitro, DocumentoArbitro, Partida
 
@@ -21,10 +24,10 @@ class CidadeForm(ModelForm):
         model = Cidade
         fields = ["nome"]
 
-class PartidaForm(ModelForm):
-    class Meta:
-        model = Partida
-        fields = ["usuario", "data", "arbitro", "local", "visitante"]
+class PartidaForm(django_forms.Form):
+    visitante = django_forms.ModelChoiceField(queryset=Time.objects.all(), label="Selecione o time visitante")
+    local = django_forms.ModelChoiceField(queryset=Time.objects.all(), label="Selecione o time local")
+    data = django_forms.DateField(label="Data da partida")
 
 class PolemicaForm(ModelForm):
     class Meta:
