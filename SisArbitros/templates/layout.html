@@ -73,7 +73,7 @@
                                 </div>
                             </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="{% url 'url_sobre' %}">Sobre</a>
+                                <a class="nav-link" href="#">Sobre</a>
                             </li>
                         </ul>
                         <div class="nav-search ml-auto d-none d-lg-block">
@@ -101,83 +101,9 @@
 <section class="block-wrapper">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-				<div class="news-style-one">
-                    <h3 class="news-title">
-                        <span>últimos sorteios</span>
-                    </h3>
-                    {% for i in partidas %}
-                        <div class="post-navigation rounded w-100 shadow">
-                            <div class="item">
-                                <div class="post-block-wrapper clearfix mb-1">
-                                    <div class="post-content container">
-                                        <h6 class="text-uppercase text-light mb-3">Partida dia {{ i.data }}</h6>
-                                        <div class="row">
-                                            <div class="col-lg-4 w-50 mt-2 bg-light rounded">
-                                                <h2 class="post-title text-success mt-2"><i class="fa fa-shield" aria-hidden="true"></i>&nbsp;&nbsp;{{ i.local }}</h2>
-                                                <h2 class="post-title text-success mt-2"><i class="fa fa-shield" aria-hidden="true"></i>&nbsp;&nbsp;{{ i.visitante }}</h2>
-                                            </div>
-                                            <div class="col-lg-6 w-50">
-                                                <h6 class="mt-2 text-light">Árbitro escalado:</h6>
-                                                <h2 class="mt-2 text-light">{{ i.arbitro }}</h2>
-                                            </div>
-                                        </div>
-                                        <h6 class="float-right"><a href="#" class="text-light "><u>Ver mais</u></a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <div class="sidebar">
-                    <div class="widget">
-                        <h3 class="news-title">
-                            <span>Notícias da Arbitragem</span>
-                        </h3>
-                        <div class="post-overlay-wrapper shadow">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="{% static '/img/news-01.jpg' %}" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title">
-                                    <a href="single-post.html">First Look At Self-Portrait's Autumn Collection...</a>
-                                </h2>
-                            <div class="post-meta white">
-                            <span class="posted-time"><i class="fa-regular fa-clock mr-1"></i>17 jun,2019</span>
-                            <span> by </span>
-                            <span class="post-author">
-                                <a href="author.html">Jammy Anderson</a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-padding">
-    <nav aria-label="pagination-wrapper" class="pagination-wrapper">
-        <ul class="pagination justify-content-center">
-            <li class="page-item active">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
-                <span class="">Previous</span>
-            </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span class="">Next</span>
-                <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
-            </a>
-            </li>
-        </ul>
-    </nav>
+                {% block conteudo %}
+                {% endblock %}
+           </div>
 </section>
 
 <footer class="footer footer-main ">

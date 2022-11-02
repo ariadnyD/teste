@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+{% block conteudo %}
+{% load static %}
+<body>
+    
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>Sobre</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h2 class="mb-4">Nossa história</h2>
+                    <p>O SAAB foi criado em busca de melhorar o sistema de escolhas de árbitros para as partidas de futebol, de forma rápida e prática.</p>
+                    <p>Foi utilizado das regras da CBF para desenvolver uma lógica para os sorteios de árbitros, visando diminuir os conflitos entre arbitros e times nos jogos.</p>
+                   
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">			
+                </div>
+            </div>
+    
+        </div>
+    </section>
+    
+    
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="mb-5">
+                        <h2>Membros da equipe</h2>
+                        <p>O trabalho em equipe nos trouxe um ótimo resultado.</p>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-block mb-5 mb-lg-0">
+                        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">
+    
+                        <div class="team-content mt-4">
+                            <h3 class="title-large">Juan</h3>
+                            <p>Dsenvolvedor</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4  col-md-6">
+                    <div class="team-block mb-5 mb-lg-0">
+                        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">
+    
+                        <div class="team-content mt-4">
+                            <h3 class="title-large">Elaine</h3>
+                            <p>Desenvolvedora</p>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6">
+                    <div class="team-block mb-5 mb-lg-0">
+                        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">
+    
+                        <div class="team-content mt-4">
+                            <h3 class="title-large">Ariadny</h3>
+                            <p>Gerente e desenvolvedora</p>
+                             </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6">
+                    <div class="team-block mb-5 mb-lg-0">
+                        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">
+    
+                        <div class="team-content mt-4">
+                            <h3 class="title-large">Francisco</h3>
+                            <p>Desenvolvedor</p>
+    
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-block">
+                        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">
+    
+                        <div class="team-content mt-4">
+                            <h3 class="title-large">Beatriz</h3>
+                            <p>Desenvolvedor</p>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4  col-md-6">
+                    <div class="team-block mb-5 mb-lg-0">
+                        <img src="{% static '/img/SAAB-logo2.0.png' %}" alt="" class="img-fluid rounded">
+    
+                        <div class="team-content mt-4">
+                            <h3 class="title-large">Iuri</h3>
+                            <p>Orientador</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    </body>
+{% endblock %}

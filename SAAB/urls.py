@@ -57,4 +57,6 @@ urlpatterns = [
     path('deletePartida/<int:id>', deletePartida, name = "url_deletePartida"),
     path('detalhamentoPartida/<int:id>', detalhamentoPartida, name = "url_detalhamentoPartida"),
 
+    path('sobre/', sobre , name="url_sobre"),
+
 ]
