@@ -4,22 +4,25 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Cidades</title>
-    </head>
-    <body>
-        <h1 class="mt-4">Cidades</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item">Cidades</li>
-            <li class="breadcrumb-item active">Editar ou Adicionar Nova</li>
-        </ol>
-        <form method="post" class="w-75">
-            {% csrf_token %}
-            {{ formCidade|crispy }}
-            <div class="w-100 text-center">
-                <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
-            </div>
-        </form>
-    </body>
+
+<head>
+    <title>SAAB | Cidades</title>
+</head>
+
+<body>
+    <h1 class="mt-4">Cidades</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">Cidades</li>
+        <li class="breadcrumb-item active">Editar ou Adicionar Nova</li>
+    </ol>
+    <form method="post" class="w-75">
+        {% csrf_token %}
+        {{ formCidade|crispy }}
+        <div class="w-100 text-center">
+            <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
+        </div>
+    </form>
+</body>
+
 </html>
 {% endblock %}

@@ -3,15 +3,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Informações adicionais</title>
+    <title>SAAB | Informações adicionais</title>
 </head>
+
 <body>
     <h1 class="mt-4">{{ arbitro }}</h1>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Declarações Polêmicas
+            Declarações Polêmicas
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -24,24 +26,27 @@
                     </tr>
                 </thead>
                 {% for i in Decla %}
-                    <tr>
-                        <td>{{ i.data }}</td>
-                        <td>{{ i.descricao }}</td>
-                        <td>{{ i.peso }}</td>
-                        <td>
-                            <a href="{% url 'url_updateDeclaPolemica' arbitro.codigo i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
-                            <a href="{% url 'url_deleteDeclaPolemica' arbitro.codigo i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ i.data }}</td>
+                    <td>{{ i.descricao }}</td>
+                    <td>{{ i.peso }}</td>
+                    <td>
+                        <a href="{% url 'url_updateDeclaPolemica' arbitro.codigo i.codigo %}"><button
+                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                        <a href="{% url 'url_deleteDeclaPolemica' arbitro.codigo i.codigo %}"><button
+                                class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                    </td>
+                </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_declaPolemicas' arbitro.codigo %}"><button  class="btn btn-primary">Nova Declaração</button></a>
+            <a href="{% url 'url_declaPolemicas' arbitro.codigo %}"><button class="btn btn-primary">Nova
+                    Declaração</button></a>
         </div>
     </div>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Denúncias
+            Denúncias
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -54,24 +59,27 @@
                     </tr>
                 </thead>
                 {% for i in Denun %}
-                    <tr>
-                        <td>{{ i.data }}</td>
-                        <td>{{ i.descricao }}</td>
-                        <td>{{ i.peso }}</td>
-                        <td>
-                            <a href="{% url 'url_updateDenuncias' arbitro.codigo i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
-                            <a href="{% url 'url_deleteDenuncias' arbitro.codigo i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ i.data }}</td>
+                    <td>{{ i.descricao }}</td>
+                    <td>{{ i.peso }}</td>
+                    <td>
+                        <a href="{% url 'url_updateDenuncias' arbitro.codigo i.codigo %}"><button
+                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                        <a href="{% url 'url_deleteDenuncias' arbitro.codigo i.codigo %}"><button
+                                class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                    </td>
+                </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_denuncias' arbitro.codigo %}"><button  class="btn btn-primary">Nova Denúncia</button></a>
+            <a href="{% url 'url_denuncias' arbitro.codigo %}"><button class="btn btn-primary">Nova
+                    Denúncia</button></a>
         </div>
     </div>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Polêmicas em sua vida pública
+            Polêmicas em sua vida pública
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -84,24 +92,27 @@
                     </tr>
                 </thead>
                 {% for i in VidaPub %}
-                    <tr>
-                        <td>{{ i.data }}</td>
-                        <td>{{ i.descricao }}</td>
-                        <td>{{ i.peso }}</td>
-                        <td>
-                            <a href="{% url 'url_updatePolemicaVP' arbitro.codigo i.codigo%}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
-                            <a href="{% url 'url_deletePolemicaVP' arbitro.codigo i.codigo%}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ i.data }}</td>
+                    <td>{{ i.descricao }}</td>
+                    <td>{{ i.peso }}</td>
+                    <td>
+                        <a href="{% url 'url_updatePolemicaVP' arbitro.codigo i.codigo%}"><button
+                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                        <a href="{% url 'url_deletePolemicaVP' arbitro.codigo i.codigo%}"><button
+                                class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                    </td>
+                </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_polemicasvp' arbitro.codigo %}"><button  class="btn btn-primary">Nova Polêmica</button></a>
+            <a href="{% url 'url_polemicasvp' arbitro.codigo %}"><button class="btn btn-primary">Nova
+                    Polêmica</button></a>
         </div>
     </div>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Casos de documentação entregue incorreta
+            Casos de documentação entregue incorreta
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -114,20 +125,23 @@
                     </tr>
                 </thead>
                 {% for i in Doc %}
-                    <tr>
-                        <td>{{ i.data }}</td>
-                        <td>{{ i.descricao }}</td>
-                        <td>{{ i.peso }}</td>
-                        <td>
-                            <a href="{% url 'url_updatePapelada' arbitro.codigo i.codigo%}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
-                            <a href="{% url 'url_deletePapelada' arbitro.codigo i.codigo%}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ i.data }}</td>
+                    <td>{{ i.descricao }}</td>
+                    <td>{{ i.peso }}</td>
+                    <td>
+                        <a href="{% url 'url_updatePapelada' arbitro.codigo i.codigo%}"><button
+                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                        <a href="{% url 'url_deletePapelada' arbitro.codigo i.codigo%}"><button
+                                class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                    </td>
+                </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_papelada' arbitro.codigo %}"><button  class="btn btn-primary">Novo Caso</button></a>
+            <a href="{% url 'url_papelada' arbitro.codigo %}"><button class="btn btn-primary">Novo Caso</button></a>
         </div>
     </div>
 </body>
+
 </html>
 {% endblock %}

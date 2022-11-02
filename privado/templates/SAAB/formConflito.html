@@ -4,23 +4,27 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+
   <head>
-    <head>
-      <title>Conflitos</title>
-    </head>
+    <title>SAAB | Conflitos</title>
   </head>
-  <body>
-    <h1 class="mt-4">Conflitos</h1>
-    <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item">Conflito</li>
-      <li class="breadcrumb-item active">Editar ou Adicionar Novo</li>
-    </ol>
-    <form method="POST" class="w-75">
-      {% csrf_token %} {{form|crispy}}
-      <div class="w-100 text-center">
-        <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
-      </div>
-    </form>
-  </body>
+</head>
+
+<body>
+  <h1 class="mt-4">Conflitos</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Conflito</li>
+    <li class="breadcrumb-item active">Editar ou Adicionar Novo</li>
+  </ol>
+  <form method="POST" class="w-75">
+    {% csrf_token %} {{form|crispy}}
+    <div class="w-100 text-center">
+      <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
+    </div>
+  </form>
+</body>
+
 </html>
 {% endblock %}

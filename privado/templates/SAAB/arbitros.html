@@ -4,40 +4,45 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>SAAB | Árbitros</title>
-    </head>
-    <body>
-        {{ teste }}
-        <h1 class="mt-4">Árbitros Cadastrados</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item">Árbitros</li>
-            <li class="breadcrumb-item active">Árbitros Cadastrados</li>
-        </ol>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Data de Nascimento</th>
-                    <th>Cidade</th>
-                    <th>Forma física</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            {% for i in arbitros %}
-                <tr>
-                    <td><a href="{% url 'url_detalhamentoArbitro' i.codigo %}">{{ i.nome }}</a></td>
-                    <td>{{ i.datanasc }}</td>
-                    <td>{{ i.cidade }}</td>
-                    <td>{{ i.formafisica }}</td>
-                    <td>
-                        <a href="{% url 'url_updateArbitro' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
-                        <a href="{% url 'url_deleteArbitro' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-        <a href="{% url 'url_formArbitro' %}"><button  class="btn btn-primary">Novo Árbitro</button></a>
-    </body>
+
+<head>
+    <title>SAAB | Árbitros</title>
+</head>
+
+<body>
+    {{ teste }}
+    <h1 class="mt-4">Árbitros Cadastrados</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">Árbitros</li>
+        <li class="breadcrumb-item active">Árbitros Cadastrados</li>
+    </ol>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>Cidade</th>
+                <th>Forma física</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        {% for i in arbitros %}
+        <tr>
+            <td><a href="{% url 'url_detalhamentoArbitro' i.codigo %}">{{ i.nome }}</a></td>
+            <td>{{ i.datanasc }}</td>
+            <td>{{ i.cidade }}</td>
+            <td>{{ i.formafisica }}</td>
+            <td>
+                <a href="{% url 'url_updateArbitro' i.codigo %}"><button class="btn btn-primary btn-sm"><i
+                            class="fas fa-pencil"></i></button></a>
+                <a href="{% url 'url_deleteArbitro' i.codigo %}"><button class="btn btn-danger btn-sm"><i
+                            class="fas fa-trash"></i></button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'url_formArbitro' %}"><button class="btn btn-primary">Novo Árbitro</button></a>
+</body>
+
 </html>
 {% endblock %}

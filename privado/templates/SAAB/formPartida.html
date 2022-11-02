@@ -4,26 +4,29 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAAB | editar partida</title>
+  <title>SAAB | Editar partida</title>
 </head>
+
 <body>
   <h1 class="mt-4">Partida</h1>
   <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item">Partida</li>
-      <li class="breadcrumb-item active">Editar partida</li>
+    <li class="breadcrumb-item">Partida</li>
+    <li class="breadcrumb-item active">Editar partida</li>
   </ol>
   <form method="POST">
     {% csrf_token %}
     {{ formPartida|crispy }}
     <div class="w-100 text-center">
       <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
-  </div>
+    </div>
   </form>
 
 </body>
+
 </html>
 {% endblock %}

@@ -4,22 +4,25 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Times</title>
-    </head>
-    <body>
-        <h1 class="mt-4">Times</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item">Times</li>
-            <li class="breadcrumb-item active">Editar ou Adicionar Novo</li>
-        </ol>
-        <form method="POST" class="w-75">
-            {% csrf_token %}
-            {{form|crispy}}
-            <div class="w-100 text-center">
-                <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
-            </div>
-        </form>
-    </body>
+
+<head>
+    <title>SAAB | Times</title>
+</head>
+
+<body>
+    <h1 class="mt-4">Times</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">Times</li>
+        <li class="breadcrumb-item active">Editar ou Adicionar Novo</li>
+    </ol>
+    <form method="POST" class="w-75">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="w-100 text-center">
+            <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
+        </div>
+    </form>
+</body>
+
 </html>
 {% endblock %}

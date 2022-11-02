@@ -4,52 +4,55 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAAB | Detlhamento de partida</title>
+  <title>SAAB | Detalhamento de partida</title>
 </head>
+
 <body>
-  
+
   <h1 class="mt-4">Detalhamento da partidas</h1>
 
   <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item">Partidas</li>
     <li class="breadcrumb-item active">Detalhamento de Partida</li>
-</ol>
+  </ol>
 
 
-    {% for i in detalhes %} 
+  {% for i in detalhes %}
 
-    <div class="card mb-4">
-      <div class="card-body"> 
-        <div class="card mb-4">
-          <div class="card-body">
-            <p>Da casa: {{ i.local }}</p>
-            <p>Visitante: {{ i.visitante }}</p>
-            <p>Data: {{ i.data }}</p>
-            <p>Árbitro selecionado: {{ i.arbitro }}</p>
-          </div>
-        </div>
-
-    {% endfor %}
-    
-  {% for i in conflitos %}
-
-       <div class="card mb-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="card mb-4">
         <div class="card-body">
-            <p style="font-weight: bold">Conflitos da partida:</p>
-            <p>Descrição: {{ i.descricao }}</p>
-            <p>Falha técnica: {{ i.errotecnico }}</p>
-        </div>     
-       </div> 
+          <p>Da casa: {{ i.local }}</p>
+          <p>Visitante: {{ i.visitante }}</p>
+          <p>Data: {{ i.data }}</p>
+          <p>Árbitro selecionado: {{ i.arbitro }}</p>
+        </div>
+      </div>
+
+      {% endfor %}
+
+      {% for i in conflitos %}
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <p style="font-weight: bold">Conflitos da partida:</p>
+          <p>Descrição: {{ i.descricao }}</p>
+          <p>Falha técnica: {{ i.errotecnico }}</p>
+        </div>
       </div>
     </div>
+  </div>
 
-    {% endfor %}
-</main>
+  {% endfor %}
+  </main>
 
 </body>
+
 </html>
 {% endblock %}
