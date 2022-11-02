@@ -1,17 +1,55 @@
 import random
+from rolepermissions.decorators import has_permission_decorator
 from django.shortcuts import render, redirect
 from privado.models import Time, Conflito, Arbitro, Cidade, VidapubliArbitro, DeclaracaoArbitro, DenunciaArbitro, DocumentoArbitro, Partida, Usuario
-from privado.form import *
+from privado.forms import *
 from django.db.models.aggregates import Count
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
-def login(request):
+def sair(request):
+    request.session.flush()
+    return redirect('/login')
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("/partidas")
+        else:
+            messages.success(request, ("E-mail ou senha inválidos"))
     return render(request, "SAAB/login.html")
 
+@has_permission_decorator('cadastrar_usuarios_adm')
+def formUsuario(request):
+    formUsuario = UserCreationForm()
+    if request.method == "POST":
+        formUsuario = UserCreationForm(request.POST)
+        if formUsuario.is_valid():
+            obj = Usuario.objects.create(
+                first_name = formUsuario.cleaned_data.get("first_name"),
+                username = formUsuario.cleaned_data.get("username"),
+                tipo = 'A',
+            )
+            obj.set_password(formUsuario.cleaned_data["password1"])
+            obj.save()
+            
+            return redirect("/login")
+    else:
+        formUsuario = UserCreationForm()
+    pacote = {"formUsuario": formUsuario}
+    return render(request, "SAAB/usuarios/formUsuario.html", pacote)
+
+@has_permission_decorator('mexer_no_sistema')
 def times(request):
     time = Time.objects.all()
     parametros = {"time": time}  
     return render(request, "SAAB/times.html", parametros)
 
+@has_permission_decorator('mexer_no_sistema')
 def formTime(request):
     formTime = TimeForm(request.POST or None)
     if formTime.is_valid():
@@ -20,6 +58,7 @@ def formTime(request):
     pacote = {"form": formTime}
     return render(request, "SAAB/formTime.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updateTime(request, id):
     aval = Time.objects.get(pk=id)
     formTime = TimeForm(request.POST or None, instance=aval)
@@ -29,16 +68,19 @@ def updateTime(request, id):
     pacote = {"form": formTime}
     return render(request, "SAAB/formTime.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deleteTime(request, id):
     aval = Time.objects.get(pk=id)
     aval.delete()
     return redirect("/times")
 
+@has_permission_decorator('mexer_no_sistema')
 def conflitos(request):
     conflito = Conflito.objects.all()
     parametros = {"conflito": conflito}
     return render(request, "SAAB/conflitos.html", parametros)
 
+@has_permission_decorator('mexer_no_sistema')
 def formConflito(request):
     formConflito = ConflitoForm(request.POST or None)
     if formConflito.is_valid():
@@ -47,6 +89,7 @@ def formConflito(request):
     pacote = {"form": formConflito}
     return render(request, "SAAB/formconflito.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updateConflito(request, id):
     aval = Conflito.objects.get(pk=id)
     formConflito = ConflitoForm(request.POST or None, instance=aval)
@@ -56,21 +99,25 @@ def updateConflito(request, id):
     pacote = {"form": formConflito}
     return render(request, "SAAB/formConflito.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deleteConflito(request, id):
     aval = Conflito.objects.get(pk=id)
     aval.delete()
     return redirect("/conflitos")
 
+@has_permission_decorator('mexer_no_sistema')
 def arbitros(request):
     arbt = Arbitro.objects.all()
     pacote = {"arbitros": arbt, "editArbitro": 123}
     return render(request, "SAAB/arbitros.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def cidades(request):
     cidd = Cidade.objects.all()
     pacote = {"cidades": cidd, "editCidade": 123}
     return render(request, "SAAB/cidades.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def formCidade(request):
     formCidade = CidadeForm(request.POST or None)
     if formCidade.is_valid() :
@@ -79,6 +126,7 @@ def formCidade(request):
     pacote = {"formCidade": formCidade}
     return render(request, "SAAB/formCidade.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updateCidade(request, id):
     cida = Cidade.objects.get(pk=id)
     formCidade = CidadeForm(request.POST or None, instance=cida)
@@ -88,11 +136,13 @@ def updateCidade(request, id):
     pacote = {"formCidade": formCidade}
     return render(request, "SAAB/formCidade.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deleteCidade(request, id):
     cida = Cidade.objects.get(pk=id)
     cida.delete()
     return redirect("/cidades")
 
+@has_permission_decorator('mexer_no_sistema')
 def formArbitro(request):
     formArbitro = ArbitroForm(request.POST or None)
     if formArbitro.is_valid() :
@@ -102,6 +152,7 @@ def formArbitro(request):
     pacote = {"formArbitro": formArbitro}
     return render(request, "SAAB/formArbitro.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updateArbitro(request, id):
     arbi = Arbitro.objects.get(pk=id)
     formArbitro = ArbitroForm(request.POST or None, instance=arbi)
@@ -112,11 +163,13 @@ def updateArbitro(request, id):
     pacote = {"formArbitro": formArbitro}
     return render(request, "SAAB/formArbitro.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deleteArbitro(request, id):
     arbi = Arbitro.objects.get(pk=id)
     arbi.delete()
     return redirect("/arbitros")
 
+@has_permission_decorator('mexer_no_sistema')
 def detalhamentoArbitro(request, id):
     arbi = Arbitro.objects.get(pk=id)
     ContDe= DeclaracaoArbitro.objects.filter(arbitro = id). aggregate(decla_count=Count ('*'))
@@ -133,6 +186,7 @@ def detalhamentoArbitro(request, id):
 
     return render(request, "SAAB/detalhamentoArbitro.html", context)
 
+@has_permission_decorator('mexer_no_sistema')
 def InfoAdicionais (request, id):
     arbi = Arbitro.objects.get(pk=id)
     Decla = DeclaracaoArbitro.objects.filter(arbitro=id)
@@ -148,6 +202,7 @@ def InfoAdicionais (request, id):
     }
     return render(request, "SAAB/InfoAdicionais.html", context)
 
+@has_permission_decorator('mexer_no_sistema')
 def formPolemica(request, id):
     formPolemica = PolemicaForm(request.POST or None)
     if formPolemica.is_valid() :
@@ -157,6 +212,7 @@ def formPolemica(request, id):
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updatePolemica(request, ida, id):
     pole = DeclaracaoArbitro.objects.get(pk=id)
     formPolemica = PolemicaForm(request.POST or None, instance=pole)
@@ -167,11 +223,13 @@ def updatePolemica(request, ida, id):
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deletePolemica(request, ida, id):
     pole = DeclaracaoArbitro.objects.get(pk=id)
     pole.delete()
     return redirect("/InfoAdicionais/"+str(ida))
 
+@has_permission_decorator('mexer_no_sistema')
 def formPolemicaVP(request, id):
     formPolemicaVP = PolemicaVPForm(request.POST or None)
     if formPolemicaVP.is_valid() :
@@ -181,6 +239,7 @@ def formPolemicaVP(request, id):
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updatePolemicaVP(request, ida, id):
     polevp = VidapubliArbitro.objects.get(pk=id)
     formPolemicaVP = PolemicaVPForm(request.POST or None, instance=polevp)
@@ -191,11 +250,13 @@ def updatePolemicaVP(request, ida, id):
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deletePolemicaVP(request, ida, id):
     polevp = VidapubliArbitro.objects.get(pk=id)
     polevp.delete()
     return redirect("/InfoAdicionais/"+str(ida))
-    
+
+@has_permission_decorator('mexer_no_sistema')
 def formDenuncias(request, id):
     formDenuncias = DenunciasForm(request.POST or None)
     if formDenuncias.is_valid() :
@@ -205,6 +266,7 @@ def formDenuncias(request, id):
     pacote = {"formDenuncias": formDenuncias}
     return render(request, "SAAB/formDenuncias.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updateDenuncias(request, ida, id):
     denuncia = DenunciaArbitro.objects.get(pk=id)
     formDenuncias = DenunciasForm(request.POST or None, instance=denuncia)
@@ -215,11 +277,13 @@ def updateDenuncias(request, ida, id):
     pacote = {"formDenuncias": formDenuncias}
     return render(request, "SAAB/formDenuncias.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deleteDenuncias(request, ida, id):
     denuncia = DenunciaArbitro.objects.get(pk=id)
     denuncia.delete()
     return redirect("/InfoAdicionais/"+str(ida))
 
+@has_permission_decorator('mexer_no_sistema')
 def formPapelada(request, id):
     formPapelada = PapeladaForm(request.POST or None)
     if formPapelada.is_valid() :
@@ -229,6 +293,7 @@ def formPapelada(request, id):
     pacote = {"formPapelada": formPapelada}
     return render(request, "SAAB/formPapelada.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def updatePapelada(request, ida, id):
     papelada = DocumentoArbitro.objects.get(pk=id)
     formPapelada = PapeladaForm(request.POST or None, instance=papelada)
@@ -239,11 +304,13 @@ def updatePapelada(request, ida, id):
     pacote = {"formPapelada": formPapelada}
     return render(request, "SAAB/formPapelada.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deletePapelada(request, ida, id):
     papelada = DocumentoArbitro.objects.get(pk=id)
     papelada.delete()
     return redirect("/InfoAdicionais/"+str(ida))
 
+@has_permission_decorator('mexer_no_sistema')
 def sorteio(request):
     formPartida = PartidaForm(request.POST, request.FILES)
     pacote = {}
@@ -339,26 +406,28 @@ def sorteio(request):
                     arbitro_ganhador = random.choice(resultado_final)
 
                 obj = Partida.objects.create(
-                    usuario = Usuario.objects.get(codigo = 1),
+                    usuario = request.user,
                     arbitro = Arbitro.objects.get(codigo = arbitro_ganhador.codigo),
                     visitante = formPartida.cleaned_data.get("visitante"),
                     local = formPartida.cleaned_data.get("local"),
                     data = formPartida.cleaned_data.get("data"),
                     )
                 obj.save()
-                return redirect("/")       
+                return redirect("/partidas")       
 
     pacote = {"FormPartida": formPartida, "ganhador": resultado_final}
     return render(request, "SAAB/sorteio.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def inicioAdmin(request):
     part = Partida.objects.all()
     parametros = {"partidas": part}  
     return render(request, "SAAB/partidas.html", parametros)
 
+@has_permission_decorator('mexer_no_sistema')
 def updatePartida(request, id):
     partida = Partida.objects.get(pk=id)
-    formPartida = PartidaForm(request.POST or None, instance=partida)
+    formPartida = PartidaModelForm(request.POST or None, instance=partida)
 
     if formPartida.is_valid():
         formPartida.save()
@@ -367,11 +436,13 @@ def updatePartida(request, id):
     pacote = {"formPartida": formPartida}
     return render(request, "SAAB/formPartida.html", pacote)
 
+@has_permission_decorator('mexer_no_sistema')
 def deletePartida(request, id):
     partida = Partida.objects.get(pk=id)
     partida.delete()
     return redirect("/partidas")
 
+@has_permission_decorator('mexer_no_sistema')
 def detalhamentoPartida(request, id):
     conflitos = Conflito.objects.all()
     partida = Partida.objects.filter(pk=id)

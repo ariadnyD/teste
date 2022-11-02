@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>SAAB | Erro 403</title>
+        <link href="{% static '/css/styles.css' %}" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="layoutError">
+            <div id="layoutError_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="text-center mt-4">
+                                    <img src="{% static '/img/403.png' %}" alt="403">
+                                    <h1 class="display-1">403</h1>
+                                    <p class="lead">Não autorizado
+                                    </p>
+                                    <p>O acesso a essa página foi negado</p>
+                                    <a href="{% url 'url_index' %}">
+                                        <i class="fas fa-arrow-left me-1"></i>
+                                        Retornar a tela inicial
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutError_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; SAAB 2022</div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{% static '/js/scripts.css' %}"></script>
+        <script>
+            setTimeout(function(){
+               window.location.href = '{% url 'url_index' %}';
+            }, 55000);
+         </script>
+    </body>
+</html>

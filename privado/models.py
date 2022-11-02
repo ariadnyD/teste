@@ -1,11 +1,9 @@
-from wsgiref.handlers import format_date_time
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class Usuario(models.Model):
-    codigo = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=16)
-    email = models.CharField(max_length=100)
-    senha = models.CharField(max_length=16)
+class Usuario(AbstractUser):
+    choices_tipo = (('G', 'Gerente'), ('A', 'Administrador'))
+    tipo = models.CharField(max_length=1, choices=choices_tipo)
 
     def __str__(self):
         return (self.username)

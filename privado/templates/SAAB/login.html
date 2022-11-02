@@ -22,27 +22,29 @@
 
       <div class="login-side">
 
-        <form action="index.html">
-        <h3>LOGIN</h3>
+        <form method="post">
+          {% csrf_token %}
+          <h3>LOGIN</h3>
 
-        <label class="login_label">
-          <span>Email</span>
-          <input type="email" id="email" class="input" required>
-        </label>
-        
-
-        <label for="password">
-          <span>Senha</span>
-          <input type="password" id="password" class="input" required>
-        </label>
-        
-
-        <input type="submit" id = "submit-button">
+          <label class="login_label">
+            <span>Email ou usuário</span>
+            <input type="text" id="email" name="username" required>
+          </label>
+          
+          <label for="password">
+            <span>Senha</span>
+            <input type="password" id="password" name="password" required>
+          </label>
+          {% if messages %}
+            {% for message in messages %}
+                <p class="mensagem">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+          <input type="submit" class="mt" id = "submit-button">
         </form>
 
         <div class="help_links">
           <span><a href="change_password">Esqueceu a senha?</a></span>
-          <span><a href="Register">Cadastrar-se</a></span>
         </div>
       </div>
       </div>

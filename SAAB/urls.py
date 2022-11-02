@@ -6,19 +6,27 @@ from SisArbitros.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="url_index"),
-    path('login/', login, name="url_login"),
+
+    path('login/', login_user, name="url_login"),
+    path('sair/', sair, name="url_sair"),
+
+    path('cadastrarUsuario/', formUsuario, name="url_times"),
+
     path('times/', times, name="url_times"),
     path('formTime/', formTime, name="url_formTime"),
     path('updateTime/<int:id>/', updateTime, name="url_updateTime"),
     path('deleteTime/<int:id>/', deleteTime, name="url_deleteTime"),
+
     path('conflitos/', conflitos , name="url_conflitos"),
     path('formConflito/', formConflito, name="url_formConflito"),
     path('updateConflito/<int:id>/', updateConflito, name="url_updateConflito"),
     path('deleteConflito/<int:id>/', deleteConflito, name="url_deleteConflito"),
+
     path('formCidade/', formCidade, name="url_formCidade"),
     path('cidades/', cidades, name="url_cidades"),
     path('updateCidade/<int:id>', updateCidade, name="url_updateCidade"),
     path('deleteCidade/<int:id>', deleteCidade, name="url_deleteCidade"),
+
     path('formArbitro/', formArbitro, name="url_formArbitro"),
     path('arbitros/', arbitros, name="url_arbitros"),
     path('updateArbitro/<int:id>', updateArbitro, name="url_updateArbitro"),
