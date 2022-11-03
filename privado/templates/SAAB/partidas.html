@@ -28,7 +28,7 @@
 {% for i in partidas %}
   <tr>
     <td>
-      <a href="{% url 'url_detalhamentoPartida' i.codigo %}">{{ i.local }} X {{ i.visitante }}</a>
+      <a href="{% url 'url_detalhamentoPartida' i.codigo %}" class="text-verde">{{ i.local }} X {{ i.visitante }}</a>
     </td>
     <td>{{ i.arbitro }}</td>
     <td> 
@@ -38,7 +38,7 @@
   </tr>
   {% endfor %}
 </table>
-<a href="{% url 'url_sorteio' %}"><button class="btn btn-dark">Novo Sorteio</button></a>
+<a href="{% url 'url_sorteio' %}"><button class="btn btn-dark"><i class="fa-solid fa-plus"></i>&nbsp;Novo Sorteio</button></a>
 
 
 </body>

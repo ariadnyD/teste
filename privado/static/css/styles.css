@@ -409,8 +409,9 @@ select {
 }
 
 thead{
-  background-color: #58cc86;
-  border-bottom: none;
+  background: #1c7943;
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
 }
 
 select {
@@ -2089,7 +2090,6 @@ progress {
 
 .table> :not(:first-child),
 .dataTable-table> :not(:first-child) {
-  border-top: 2px solid currentColor;
 }
 
 .caption-top {
@@ -8891,6 +8891,16 @@ fieldset:disabled .btn {
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-amarelo {
+  --bs-text-opacity: 1;
+  color: #F3CC43 !important;
+}
+
+.text-verde {
+  --bs-text-opacity: 1;
+  color: #1c7943 !important;
+}
+
 .text-body {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
@@ -8985,6 +8995,16 @@ fieldset:disabled .btn {
 .bg-body {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-amarelo {
+  --bs-bg-opacity: 1;
+  background-color: #F3CC43 !important;
+}
+
+.bg-verde {
+  --bs-bg-opacity: 1;
+  background-color: #1c7943 !important;
 }
 
 .bg-transparent {

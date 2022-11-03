@@ -17,7 +17,7 @@
         <li class="breadcrumb-item active">Árbitros Cadastrados</li>
     </ol>
     <table class="table table-bordered">
-        <thead>
+        <thead class="text-light">
             <tr>
                 <th>Nome</th>
                 <th>Data de Nascimento</th>
@@ -28,7 +28,7 @@
         </thead>
         {% for i in arbitros %}
         <tr>
-            <td><a href="{% url 'url_detalhamentoArbitro' i.codigo %}">{{ i.nome }}</a></td>
+            <td><a href="{% url 'url_detalhamentoArbitro' i.codigo %}" class="text-verde">{{ i.nome }}</a></td>
             <td>{{ i.datanasc }}</td>
             <td>{{ i.cidade }}</td>
             <td>{{ i.formafisica }}</td>
@@ -41,7 +41,7 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="{% url 'url_formArbitro' %}"><button class="btn btn-dark">Novo Árbitro</button></a>
+    <a href="{% url 'url_formArbitro' %}"><button class="btn btn-dark"><i class="fa-solid fa-plus"></i>&nbsp;Novo Árbitro</button></a>
 </body>
 
 </html>
