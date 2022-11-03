@@ -30,13 +30,13 @@
           <td>{{ i.descricao }}</td>
           <td>{{ i.errotecnico }}</td>
           <td>
-            <a href="{% url 'url_updateConflito' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+            <a href="{% url 'url_updateConflito' i.codigo %}"><button class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
             <a href="{% url 'url_deleteConflito' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
           </td>
         </tr>
         {% endfor %}
       </table>
-      <a href="{% url 'url_formConflito' %}"><button  class="btn btn-primary">Novo Conflito</button></a>
+      <a href="{% url 'url_formConflito' %}"><button class="btn btn-dark">Novo Conflito</button></a>
     </body>
   </html>
 {% endblock %}

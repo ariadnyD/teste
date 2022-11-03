@@ -33,7 +33,7 @@
             <td>{{ i.cidade }}</td>
             <td>{{ i.formafisica }}</td>
             <td>
-                <a href="{% url 'url_updateArbitro' i.codigo %}"><button class="btn btn-primary btn-sm"><i
+                <a href="{% url 'url_updateArbitro' i.codigo %}"><button type= "button" class="btn btn-warning btn-sm"><i
                             class="fas fa-pencil"></i></button></a>
                 <a href="{% url 'url_deleteArbitro' i.codigo %}"><button class="btn btn-danger btn-sm"><i
                             class="fas fa-trash"></i></button></a>
@@ -41,7 +41,7 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="{% url 'url_formArbitro' %}"><button class="btn btn-primary">Novo Árbitro</button></a>
+    <a href="{% url 'url_formArbitro' %}"><button class="btn btn-dark">Novo Árbitro</button></a>
 </body>
 
 </html>

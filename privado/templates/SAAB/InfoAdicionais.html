@@ -32,14 +32,14 @@
                     <td>{{ i.peso }}</td>
                     <td>
                         <a href="{% url 'url_updateDeclaPolemica' arbitro.codigo i.codigo %}"><button
-                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                                class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
                         <a href="{% url 'url_deleteDeclaPolemica' arbitro.codigo i.codigo %}"><button
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                     </td>
                 </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_declaPolemicas' arbitro.codigo %}"><button class="btn btn-primary">Nova
+            <a href="{% url 'url_declaPolemicas' arbitro.codigo %}"><button class="btn btn-dark">Nova
                     Declaração</button></a>
         </div>
     </div>
@@ -65,14 +65,14 @@
                     <td>{{ i.peso }}</td>
                     <td>
                         <a href="{% url 'url_updateDenuncias' arbitro.codigo i.codigo %}"><button
-                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                                class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
                         <a href="{% url 'url_deleteDenuncias' arbitro.codigo i.codigo %}"><button
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                     </td>
                 </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_denuncias' arbitro.codigo %}"><button class="btn btn-primary">Nova
+            <a href="{% url 'url_denuncias' arbitro.codigo %}"><button class="btn btn-dark">Nova
                     Denúncia</button></a>
         </div>
     </div>
@@ -98,14 +98,14 @@
                     <td>{{ i.peso }}</td>
                     <td>
                         <a href="{% url 'url_updatePolemicaVP' arbitro.codigo i.codigo%}"><button
-                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                                class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
                         <a href="{% url 'url_deletePolemicaVP' arbitro.codigo i.codigo%}"><button
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                     </td>
                 </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_polemicasvp' arbitro.codigo %}"><button class="btn btn-primary">Nova
+            <a href="{% url 'url_polemicasvp' arbitro.codigo %}"><button class="btn btn-dark">Nova
                     Polêmica</button></a>
         </div>
     </div>
@@ -131,14 +131,14 @@
                     <td>{{ i.peso }}</td>
                     <td>
                         <a href="{% url 'url_updatePapelada' arbitro.codigo i.codigo%}"><button
-                                class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                                class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
                         <a href="{% url 'url_deletePapelada' arbitro.codigo i.codigo%}"><button
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                     </td>
                 </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'url_papelada' arbitro.codigo %}"><button class="btn btn-primary">Novo Caso</button></a>
+            <a href="{% url 'url_papelada' arbitro.codigo %}"><button class="btn btn-dark">Novo Caso</button></a>
         </div>
     </div>
 </body>

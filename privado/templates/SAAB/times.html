@@ -26,13 +26,13 @@
                     <td> {{ i.nome }}</td>
                     <td> {{ i.cidade }}</td>
                     <td>
-                        <a href="{% url 'url_updateTime' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+                        <a href="{% url 'url_updateTime' i.codigo %}"><button class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
                         <a href="{% url 'url_deleteTime' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                     </td>
                 </tr>
             {% endfor %}
         </table>
-        <a href="{% url 'url_formTime' %}"><button  class="btn btn-primary">Novo Time</button></a>
+        <a href="{% url 'url_formTime' %}"><button  class="btn btn-dark">Novo Time</button></a>
     </body>
 </html>
 {% endblock %}

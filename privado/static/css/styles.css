@@ -400,6 +400,19 @@ select {
   cursor: pointer;
 }
 
+#linha{
+  background-color: #F3CC43;
+  width: 100%;
+  height: 2px;
+  left: 0px;
+  bottom: 0px;
+}
+
+thead{
+  background-color: #58cc86;
+  border-bottom: none;
+}
+
 select {
   word-wrap: normal;
 }

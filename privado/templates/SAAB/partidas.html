@@ -32,13 +32,13 @@
     </td>
     <td>{{ i.arbitro }}</td>
     <td> 
-      <a href="{% url 'url_updatePartida' i.codigo %}"><button class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></button></a>
+      <a href="{% url 'url_updatePartida' i.codigo %}"><button class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></button></a>
       <a href="{% url 'url_deletePartida' i.codigo %}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
     </td>
   </tr>
   {% endfor %}
 </table>
-<a href="{% url 'url_sorteio' %}"><button class="btn btn-primary">Novo Sorteio</button></a>
+<a href="{% url 'url_sorteio' %}"><button class="btn btn-dark">Novo Sorteio</button></a>
 
 
 </body>
