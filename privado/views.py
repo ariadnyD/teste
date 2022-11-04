@@ -204,12 +204,24 @@ def InfoAdicionais (request, id):
     }
     return render(request, "SAAB/InfoAdicionais.html", context)
 
+
+
+
+
+
 @has_permission_decorator('mexer_no_sistema')
 def formPolemica(request, id):
-    formPolemica = PolemicaForm(request.POST or None)
-    if formPolemica.is_valid() :
-        formPolemica.save()
-        return redirect("/InfoAdicionais/"+str(id))
+    formPolemica = PolemicaForm(request.POST, request.FILES)
+    if request.method == "POST":
+        if formPolemica.is_valid():
+            obj = DeclaracaoArbitro.objects.create(
+                arbitro = Arbitro.objects.get(pk=id),
+                descricao = formPolemica.cleaned_data.get("descricao"),
+                data = formPolemica.cleaned_data.get("data"),
+                peso = formPolemica.cleaned_data.get("peso"),
+                )
+            obj.save()
+            return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
@@ -217,11 +229,10 @@ def formPolemica(request, id):
 @has_permission_decorator('mexer_no_sistema')
 def updatePolemica(request, ida, id):
     pole = DeclaracaoArbitro.objects.get(pk=id)
-    formPolemica = PolemicaForm(request.POST or None, instance=pole)
+    formPolemica = PolemicaModelForm(request.POST or None, request.FILES or None, instance=pole)
     if formPolemica.is_valid():
         formPolemica.save()
         return redirect("/InfoAdicionais/"+str(ida))
-
     pacote = {"formPolemica": formPolemica}
     return render(request, "SAAB/formPolemica.html", pacote)
 
@@ -233,24 +244,30 @@ def deletePolemica(request, ida, id):
 
 @has_permission_decorator('mexer_no_sistema')
 def formPolemicaVP(request, id):
-    formPolemicaVP = PolemicaVPForm(request.POST or None)
-    if formPolemicaVP.is_valid() :
-        formPolemicaVP.save()
-        return redirect("/InfoAdicionais/"+str(id))
+    formPolemicaVP = PolemicaVPForm(request.POST, request.FILES)
+    if request.method == "POST":
+        if formPolemicaVP.is_valid():
+            obj = VidapubliArbitro.objects.create(
+                arbitro = Arbitro.objects.get(pk=id),
+                descricao = formPolemicaVP.cleaned_data.get("descricao"),
+                data = formPolemicaVP.cleaned_data.get("data"),
+                peso = formPolemicaVP.cleaned_data.get("peso"),
+                )
+            obj.save()
+            return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formPolemicaVP": formPolemicaVP}
     return render(request, "SAAB/formPolemicaVP.html", pacote)
 
 @has_permission_decorator('mexer_no_sistema')
 def updatePolemicaVP(request, ida, id):
-    polevp = VidapubliArbitro.objects.get(pk=id)
-    formPolemicaVP = PolemicaVPForm(request.POST or None, instance=polevp)
-    if formPolemicaVP.is_valid() :
-        formPolemicaVP.save()
+    pole = VidapubliArbitro.objects.get(pk=id)
+    formPolemica = PolemicaVPModelForm(request.POST or None, request.FILES or None, instance=pole)
+    if formPolemica.is_valid():
+        formPolemica.save()
         return redirect("/InfoAdicionais/"+str(ida))
-
-    pacote = {"formPolemicaVP": formPolemicaVP}
-    return render(request, "SAAB/formPolemicaVP.html", pacote)
+    pacote = {"formPolemica": formPolemica}
+    return render(request, "SAAB/formPolemica.html", pacote)
 
 @has_permission_decorator('mexer_no_sistema')
 def deletePolemicaVP(request, ida, id):
@@ -260,10 +277,17 @@ def deletePolemicaVP(request, ida, id):
 
 @has_permission_decorator('mexer_no_sistema')
 def formDenuncias(request, id):
-    formDenuncias = DenunciasForm(request.POST or None)
-    if formDenuncias.is_valid() :
-        formDenuncias.save()
-        return redirect("/InfoAdicionais/"+str(id))
+    formDenuncias = DenunciasForm(request.POST, request.FILES)
+    if request.method == "POST":
+        if formDenuncias.is_valid():
+            obj = DenunciaArbitro.objects.create(
+                arbitro = Arbitro.objects.get(pk=id),
+                descricao = formDenuncias.cleaned_data.get("descricao"),
+                data = formDenuncias.cleaned_data.get("data"),
+                peso = formDenuncias.cleaned_data.get("peso"),
+                )
+            obj.save()
+            return redirect("/InfoAdicionais/"+str(id))
 
     pacote = {"formDenuncias": formDenuncias}
     return render(request, "SAAB/formDenuncias.html", pacote)
@@ -271,7 +295,7 @@ def formDenuncias(request, id):
 @has_permission_decorator('mexer_no_sistema')
 def updateDenuncias(request, ida, id):
     denuncia = DenunciaArbitro.objects.get(pk=id)
-    formDenuncias = DenunciasForm(request.POST or None, instance=denuncia)
+    formDenuncias = DenunciasModelForm(request.POST or None, request.FILES or None, instance=denuncia)
     if formDenuncias.is_valid() :
         formDenuncias.save()
         return redirect("/InfoAdicionais/"+str(ida))
@@ -287,18 +311,25 @@ def deleteDenuncias(request, ida, id):
 
 @has_permission_decorator('mexer_no_sistema')
 def formPapelada(request, id):
-    formPapelada = PapeladaForm(request.POST or None)
-    if formPapelada.is_valid() :
-        formPapelada.save()
-        return redirect("/InfoAdicionais/"+str(id))
-
+    formPapelada = PapeladaForm(request.POST, request.FILES)
+    print(formPapelada)
+    if request.method == "POST":
+        if formPapelada.is_valid():
+            obj = DocumentoArbitro.objects.create(
+                arbitro = Arbitro.objects.get(pk=id),
+                descricao = formPapelada.cleaned_data.get("descricao"),
+                data = formPapelada.cleaned_data.get("data"),
+                peso = formPapelada.cleaned_data.get("peso"),
+                )
+            obj.save()
+            return redirect("/InfoAdicionais/"+str(id)) 
     pacote = {"formPapelada": formPapelada}
-    return render(request, "SAAB/formPapelada.html", pacote)
+    return render(request, "SAAB/formPapelada.html", pacote)    
 
 @has_permission_decorator('mexer_no_sistema')
 def updatePapelada(request, ida, id):
     papelada = DocumentoArbitro.objects.get(pk=id)
-    formPapelada = PapeladaForm(request.POST or None, instance=papelada)
+    formPapelada = PapeladaModelForm(request.POST or None, request.FILES or None, instance=papelada)
     if formPapelada.is_valid() :
         formPapelada.save()
         return redirect("/InfoAdicionais/"+str(ida))
@@ -311,6 +342,10 @@ def deletePapelada(request, ida, id):
     papelada = DocumentoArbitro.objects.get(pk=id)
     papelada.delete()
     return redirect("/InfoAdicionais/"+str(ida))
+
+
+
+
 
 @has_permission_decorator('mexer_no_sistema')
 def sorteio(request):

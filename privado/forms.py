@@ -50,23 +50,43 @@ class PartidaModelForm(ModelForm):
         model = Partida
         fields = ["local", "visitante", "data"]
 
-class PolemicaForm(ModelForm):
+class PolemicaModelForm(ModelForm):
     class Meta:
         model = DeclaracaoArbitro
-        fields = ["codigo" , "arbitro","descricao","data","peso" ]
+        fields = ["descricao","data","peso"]
 
-class PolemicaVPForm(ModelForm):
+class PolemicaForm(django_forms.Form):
+    descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
+    data = django_forms.DateField(label="Data do ocorrido:", required=False)
+    peso = django_forms.IntegerField(label="Peso:")
+
+class PolemicaVPModelForm(ModelForm):
     class Meta:
         model = VidapubliArbitro
-        fields = ["codigo" , "arbitro","descricao","data","peso" ]
+        fields = ["descricao","data","peso" ]
 
-class DenunciasForm(ModelForm):
+class PolemicaVPForm(django_forms.Form):
+    descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
+    data = django_forms.DateField(label="Data do ocorrido:", required=False)
+    peso = django_forms.IntegerField(label="Peso:")
+
+class DenunciasModelForm(ModelForm):
     class Meta:
         model = DenunciaArbitro
-        fields = ["codigo" , "arbitro","descricao","data","peso" ]
+        fields = ["descricao","data","peso" ]
 
-class PapeladaForm(ModelForm):
+class DenunciasForm(django_forms.Form):
+    descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
+    data = django_forms.DateField(label="Data do ocorrido:", required=False)
+    peso = django_forms.IntegerField(label="Peso:")
+
+class PapeladaModelForm(ModelForm):
     class Meta:
         model = DocumentoArbitro
-        fields = ["codigo" , "arbitro","descricao","data","peso" ]
+        fields = ["descricao","data","peso" ]
+
+class PapeladaForm(django_forms.Form):
+    descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
+    data = django_forms.DateField(label="Data do ocorrido:", required=False)
+    peso = django_forms.IntegerField(label="Peso:")
 
