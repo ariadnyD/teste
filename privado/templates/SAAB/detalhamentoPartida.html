@@ -41,7 +41,11 @@
         <div class="card-body">
           <p style="font-weight: bold">Conflitos da partida:</p>
           <p>Descrição: {{ i.descricao }}</p>
-          <p>Falha técnica: {{ i.errotecnico }}</p>
+          {% if i.errotecnico == True %} 
+          <p>Falha técnica: Sim </p> 
+          {% else %}
+          <p>Falha técnica: Não </p>
+          {% endif %}
         </div>
       </div>
     </div>

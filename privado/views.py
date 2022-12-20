@@ -481,10 +481,11 @@ def deletePartida(request, id):
 
 @has_permission_decorator('mexer_no_sistema')
 def detalhamentoPartida(request, id):
-    conflitos = Conflito.objects.all()
-    partida = Partida.objects.filter(pk=id)
+    partida1 = Partida.objects.filter(pk=id)
+    conflitos = Conflito.objects.filter(partida=id)
     time = Time.objects.filter(pk=id)
-    detalhes = {"detalhes":partida, "conflitos":conflitos, "time":time}
+    print(partida1)
+    detalhes = {"detalhes":partida1, "conflitos":conflitos, "time":time}
     return render(request, "SAAB/detalhamentoPartida.html", detalhes)
 
 

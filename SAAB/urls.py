@@ -6,6 +6,7 @@ from SisArbitros.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="url_index"),
+    path('search/', search, name="url_search"),
 
     path('login/', login_user, name="url_login"),
     path('sair/', sair, name="url_sair"),

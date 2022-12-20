@@ -20,6 +20,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th>Nº</th>
       <th>Times</th>
       <th>Árbitro</th>
       <th>Ações</th>
@@ -27,6 +28,7 @@
   </thead>
 {% for i in partidas %}
   <tr>
+    <td>{{ i.codigo }}</td>
     <td>
       <a href="{% url 'url_detalhamentoPartida' i.codigo %}" class="text-verde">{{ i.local }} X {{ i.visitante }}</a>
     </td>

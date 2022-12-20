@@ -31,7 +31,11 @@
             <td><a href="{% url 'url_detalhamentoArbitro' i.codigo %}" class="text-verde">{{ i.nome }}</a></td>
             <td>{{ i.datanasc }}</td>
             <td>{{ i.cidade }}</td>
-            <td>{{ i.formafisica }}</td>
+            {% if i.formafisica == True %}
+                <td> Boa </td>
+            {% else %}
+                <td> Ruim </td>
+            {% endif %}
             <td>
                 <a href="{% url 'url_updateArbitro' i.codigo %}"><button type= "button" class="btn btn-warning btn-sm"><i
                             class="fas fa-pencil"></i></button></a>

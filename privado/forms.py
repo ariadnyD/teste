@@ -41,14 +41,15 @@ class CidadeForm(ModelForm):
         fields = ["nome"]
 
 class PartidaForm(django_forms.Form):
-    visitante = django_forms.ModelChoiceField(queryset=Time.objects.all(), label="Selecione o time visitante", required=False)
+    nome = django_forms.CharField(label="Nome: (ex: Local x Visitante)", required=False)
     local = django_forms.ModelChoiceField(queryset=Time.objects.all(), label="Selecione o time local", required=False)
+    visitante = django_forms.ModelChoiceField(queryset=Time.objects.all(), label="Selecione o time visitante", required=False)
     data = django_forms.DateField(label="Data da partida", required=False)
 
 class PartidaModelForm(ModelForm):
     class Meta:
         model = Partida
-        fields = ["local", "visitante", "data"]
+        fields = ["nome", "local", "visitante", "data"]
 
 class PolemicaModelForm(ModelForm):
     class Meta:

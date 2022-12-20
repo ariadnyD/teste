@@ -63,6 +63,7 @@ class DocumentoArbitro(models.Model):
 
 class Partida(models.Model):
     codigo = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=100)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     arbitro = models.ForeignKey(Arbitro, on_delete=models.CASCADE)
     visitante  = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='visitante')

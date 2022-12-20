@@ -87,7 +87,7 @@
         </div>
     </div>
     <form action="{% url 'url_search'%}" class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder= "Digite o nome de um time para locaalizar suas partidas" autofocus="">
+        <input type="text" id="searchInput" name="site_search" placeholder="Digite o nome de um time para locaalizar suas partidas" autofocus="">
         <div class="search-close">
             <span class="close-search">
                 <i class="fa fa-times"></i>
@@ -104,10 +104,11 @@
 			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 				<div class="news-style-one">
                     <h3 class="news-title">
-                        <span>últimos sorteios</span>
+                        <span>Sorteios encontrados</span>
                     </h3>
-                    {% if partidas %}
-                    {% for i in partidas %}
+                    {% if query %}
+                    {% if results %}
+                        {% for i in results %}
                         <div class="post-navigation rounded w-100 shadow">
                             <div class="item">
                                 <div class="post-block-wrapper clearfix mb-1">
@@ -128,7 +129,9 @@
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                        <h4> Sem registros </h4>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

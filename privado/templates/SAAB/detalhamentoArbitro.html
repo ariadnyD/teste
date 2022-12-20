@@ -16,7 +16,11 @@
                 <div class="card-body">
                     <p>Data de Nascimento: {{ arbitro.datanasc }} </p>
                     <p>Cidade: {{ arbitro.cidade }} </p>
-                    <p>Forma Física: {{ arbitro.formafisica }} </p>
+                    {% if arbitro.formafisica == True %} 
+                    <p>Forma Física: Boa </p> 
+                    {% else %}
+                    <p>Forma Física: Ruim </p>
+                    {% endif %}
                 </div>
             </div>
             <div class="card mb-4">
