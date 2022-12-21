@@ -68,6 +68,13 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-x text-amarelo"></i></div>
                             Conflitos 
                         </a>
+                        {% load permission_tags %}
+                        {% if user|can:'cadastrar_usuarios_adm' %}
+                        <a class="nav-link" href="{% url 'url_cadastrarUsuario' %}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user text-amarelo"></i></div>
+                            Cadastrar Usuários 
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
             </nav>

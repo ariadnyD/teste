@@ -11,7 +11,7 @@ urlpatterns = [
     path('login/', login_user, name="url_login"),
     path('sair/', sair, name="url_sair"),
 
-    path('cadastrarUsuario/', formUsuario, name="url_times"),
+    path('cadastrarUsuario/', formUsuario, name="url_cadastrarUsuario"),
 
     path('times/', times, name="url_times"),
     path('formTime/', formTime, name="url_formTime"),
