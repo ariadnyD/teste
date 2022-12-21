@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from privado.models import *
+from privado.models import Partida, Conflito
 
 def index(request):
     part = Partida.objects.all()
-    patr_ordenados = part.order_by('-data')
-    parametros = {"partidas": patr_ordenados}
+    conf = Conflito.objects.all().order_by('-codigo')[:10]
+    conf1 = conf[:1]
+    conf = conf[1:10]
+    patr_ordenados = part.order_by('-data')[:30]
+    parametros = {"partidas": patr_ordenados, "conflitos": conf, "conflito1": conf1}
     return render(request, "index.html", parametros)
 
 def sobre(request):
@@ -16,9 +19,8 @@ def sobre(request):
 def search(request):
     results =[]
     if request.method =="GET":
+        patr = Partida.objects.all()
         query = request.GET.get('site_search')
-        print(query)
-        results = Partida.objects.filter(nome__icontains=query)
-        print(results)
+        results = patr.filter(nome__icontains=query)
 
     return render(request, 'indexbusca.html', {'query':query, 'results': results})

@@ -445,6 +445,7 @@ def sorteio(request):
                 obj = Partida.objects.create(
                     usuario = request.user,
                     arbitro = Arbitro.objects.get(codigo = arbitro_ganhador.codigo),
+                    nome = formPartida.cleaned_data.get("nome"),
                     visitante = formPartida.cleaned_data.get("visitante"),
                     local = formPartida.cleaned_data.get("local"),
                     data = formPartida.cleaned_data.get("data"),

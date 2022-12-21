@@ -23,22 +23,41 @@ class UserCreationForm(forms.UserCreationForm):
 class TimeForm(ModelForm):
     class Meta:
         model = Time
-        fields = ["codigo", "nome", "cidade"]
+        fields = ["nome", "cidade"]
+        labels = {
+            "nome": "Nome do time:",
+            "cidade": "Cidade:",
+        }
 
 class ConflitoForm(ModelForm):
     class Meta:
         model = Conflito
-        fields = ["codigo", "partida", "time", "descricao", "errotecnico"]
+        fields = ["partida", "time", "descricao", "errotecnico"]
+        labels = {
+            "partida": "Código da partida:",
+            "time": "Time:",
+            "descricao": "Descrição do conflito:",
+            "errotecnico": "Marque apenas se o conflito se caracteriza como erro técnico",
+        }
 
 class ArbitroForm(ModelForm):
     class Meta:
         model = Arbitro
         fields = ["nome", "datanasc", "cidade", "formafisica"]
+        labels = {
+            "nome": "Nome do árbitro:",
+            "datanasc": "Data de nascimento:",
+            "cidade": "Cidade natal:",
+            "formafisica": "Marque apenas se o ábritro se apresenta em boa forma física",
+        }
 
 class CidadeForm(ModelForm):
     class Meta:
         model = Cidade
         fields = ["nome"]
+        labels = {
+            "nome": "Nome da cidade:",
+        }
 
 class PartidaForm(django_forms.Form):
     nome = django_forms.CharField(label="Nome: (ex: Local x Visitante)", required=False)
@@ -50,11 +69,22 @@ class PartidaModelForm(ModelForm):
     class Meta:
         model = Partida
         fields = ["nome", "local", "visitante", "data"]
+        labels = {
+            "nome": "Nome da partida:",
+            "local": "Time da casa:",
+            "visitante": "Time visitante:",
+            "data": "Data da partida:",
+        }
 
 class PolemicaModelForm(ModelForm):
     class Meta:
         model = DeclaracaoArbitro
         fields = ["descricao","data","peso"]
+        labels = {
+            "descricao": "Descrição:",
+            "data": "Data do ocorrido:",
+            "peso": "Peso:",
+        }
 
 class PolemicaForm(django_forms.Form):
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
@@ -65,6 +95,11 @@ class PolemicaVPModelForm(ModelForm):
     class Meta:
         model = VidapubliArbitro
         fields = ["descricao","data","peso" ]
+        labels = {
+            "descricao": "Descrição:",
+            "data": "Data do ocorrido:",
+            "peso": "Peso:",
+        }
 
 class PolemicaVPForm(django_forms.Form):
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
@@ -75,6 +110,11 @@ class DenunciasModelForm(ModelForm):
     class Meta:
         model = DenunciaArbitro
         fields = ["descricao","data","peso" ]
+        labels = {
+            "descricao": "Descrição:",
+            "data": "Data do ocorrido:",
+            "peso": "Peso:",
+        }
 
 class DenunciasForm(django_forms.Form):
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
@@ -85,6 +125,11 @@ class PapeladaModelForm(ModelForm):
     class Meta:
         model = DocumentoArbitro
         fields = ["descricao","data","peso" ]
+        labels = {
+            "descricao": "Descrição:",
+            "data": "Data do ocorrido:",
+            "peso": "Peso:",
+        }
 
 class PapeladaForm(django_forms.Form):
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")

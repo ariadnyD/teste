@@ -87,7 +87,7 @@
         </div>
     </div>
     <form action="{% url 'url_search'%}" class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder= "Digite o nome de um time para locaalizar suas partidas" autofocus="">
+        <input type="text" id="searchInput" name="site_search" placeholder= "Digite o nome de um time para localizar suas partidas" autofocus="">
         <div class="search-close">
             <span class="close-search">
                 <i class="fa fa-times"></i>
@@ -134,52 +134,44 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                 <div class="sidebar">
-                    <div class="widget">
+                    <div class="mb-4">
                         <h3 class="news-title">
-                            <span>Notícias da Arbitragem</span>
+                            <span>Conflitos recentes da arbitragem</span>
                         </h3>
+                        {% if conflitos %}
+                        {% for i in conflito1 %}
                         <div class="post-overlay-wrapper shadow">
                             <div class="post-thumbnail">
-                                <img class="img-fluid" src="{% static '/img/news-01.jpg' %}" alt="post-thumbnail"/>
+                                <img class="img-fluid" src="{% static '/img/arbitro.webp' %}" alt="post-thumbnail"/>
                             </div>
                             <div class="post-content">
                                 <h2 class="post-title">
-                                    <a href="single-post.html">First Look At Self-Portrait's Autumn Collection...</a>
+                                    <h3 class="text-light"">Conflito envolvendo {{ i.time }} </h3>
                                 </h2>
+                            <p class="text-light mb-0">{{ i.descricao }}</p>
                             <div class="post-meta white">
-                            <span class="posted-time"><i class="fa-regular fa-clock mr-1"></i>17 jun,2019</span>
-                            <span> by </span>
-                            <span class="post-author">
-                                <a href="author.html">Jammy Anderson</a>
-                            </span>
+                            <span class="posted-time"><small><i class="fa-regular fa-clock mr-1"></i>{{ i.partida.data }}</small></span>
                         </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            {% for i in conflitos %}
+            <div class="post-block-wrapper post-float pl-4 mb-4 bg-warning rounded shadow">
+                <div class="post-content">
+                    <h2 class="post-title title-sm">
+                        <h4 class="text-dark">Conflito envolvendo <span class="text-success">{{ i.time }}</span></h4>
+                    </h2>
+                    <div class="post-meta">
+                        <span class="posted-time text-secondary"><small><i class="fa fa-clock-o mr-1"></i>{{ i.partida.data }}</small></span>
+                    </div>
+                    <p class="mb-3">{{ i.descricao }}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-</section>
-
-<section class="section-padding">
-    <nav aria-label="pagination-wrapper" class="pagination-wrapper">
-        <ul class="pagination justify-content-center">
-            <li class="page-item active">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
-                <span class="">Previous</span>
-            </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span class="">Next</span>
-                <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
-            </a>
-            </li>
-        </ul>
-    </nav>
 </section>
 
 <footer class="footer footer-main ">
