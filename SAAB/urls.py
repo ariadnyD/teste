@@ -19,7 +19,7 @@ urlpatterns = [
     path('deleteTime/<int:id>/', deleteTime, name="url_deleteTime"),
 
     path('conflitos/', conflitos , name="url_conflitos"),
-    path('formConflito/', formConflito, name="url_formConflito"),
+    path('formConflito/<int:id>', formConflito, name="url_formConflito"),
     path('updateConflito/<int:id>/', updateConflito, name="url_updateConflito"),
     path('deleteConflito/<int:id>/', deleteConflito, name="url_deleteConflito"),
 

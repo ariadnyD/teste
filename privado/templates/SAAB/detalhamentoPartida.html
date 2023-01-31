@@ -52,8 +52,9 @@
   </div>
 
   {% endfor %}
-  </main>
-
+  {% for i in detalhes %}
+  <a href="{% url 'url_formConflito' i.codigo %}"><button class="btn btn-dark"><i class="fa-solid fa-plus"></i>&nbsp;Novo Conflito</button></a>
+  {% endfor %}
 </body>
 
 </html>

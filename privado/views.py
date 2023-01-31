@@ -83,7 +83,19 @@ def conflitos(request):
     return render(request, "SAAB/conflitos.html", parametros)
 
 @has_permission_decorator('mexer_no_sistema')
-def formConflito(request):
+def formConflito(request, id):
+    formConflito = ConflitoForm(request.POST, request.FILES)
+    if request.method == "POST":
+        if formConflito.is_valid():
+            obj = Conflito.objects.create(
+                partida = Partida.objects.get(pk=id),
+                time = formConflito.cleaned_data.get("time"),
+                descricao = formConflito.cleaned_data.get("descricao"),
+                errotecnico = formConflito.cleaned_data.get("errotecnico"),
+                )
+            obj.save()
+            return redirect("/detalhamentoPartida/"+str(id))
+
     formConflito = ConflitoForm(request.POST or None)
     if formConflito.is_valid():
         formConflito.save()
@@ -94,7 +106,7 @@ def formConflito(request):
 @has_permission_decorator('mexer_no_sistema')
 def updateConflito(request, id):
     aval = Conflito.objects.get(pk=id)
-    formConflito = ConflitoForm(request.POST or None, instance=aval)
+    formConflito = ConflitoModelForm(request.POST or None, request.FILES or None, instance=aval)
     if formConflito.is_valid():
         formConflito.save()
         return redirect("/conflitos")

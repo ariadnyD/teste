@@ -29,7 +29,12 @@ class TimeForm(ModelForm):
             "cidade": "Cidade:",
         }
 
-class ConflitoForm(ModelForm):
+class ConflitoForm(django_forms.Form):
+    time = django_forms.ModelChoiceField(queryset=Time.objects.all(), label="Selecione o time envolvido", required=False)
+    descricao = django_forms.CharField(label="Descreva o conflito e a relação do time selecionado com ele.", required=False)
+    errotecnico = django_forms.BooleanField(label="Foi um erro técnico do arbitro?", required=False)
+
+class ConflitoModelForm(ModelForm):
     class Meta:
         model = Conflito
         fields = ["partida", "time", "descricao", "errotecnico"]
